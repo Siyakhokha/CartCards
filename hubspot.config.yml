@@ -1,0 +1,12 @@
+defaultPortal: Test
+portals:
+  - name: Test
+    portalId: 20686580
+    authType: personalaccesskey
+    auth:
+      tokenInfo:
+        accessToken: >-
+          CLKtqM__LxIOAA0AAAAA4A0DAAAAAEAY9M3uCSDXmI8MKO7pDDIUVbOXx3XyeaNtGUQhr4OSRbBCvDw6LwAABEEAAAB4AAAAAAAAAAAAAAAAAAAABAAAwAcA_v8xPAAABgAAAGAAAAAAAAAIQhTgn4HaXfhB2Zmw9cZRJ36y14qCsEoDbmExUgBaAA
+        expiresAt: '2022-04-05T13:29:02.390Z'
+    personalAccessKey: >-
+      CiQyYmMxNzNmMS1hNWYxLTQ0NTEtODE4OS01M2Y0MWJhZjc1ZTUQ9M3uCRjXmI8MKhkABeaRgncMacdJcMkhjMhTUM2Qc_pOlhqTSgNuYTE

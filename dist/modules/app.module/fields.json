@@ -1,0 +1,70 @@
+[
+  {
+    "children": [
+      {
+        "default": {
+          "size_type": "auto",
+          "src": "",
+          "alt": null,
+          "loading": "lazy"
+        },
+        "display_width": null,
+        "id": "153a9954-dcdd-6330-3440-8631638a75c4",
+        "label": "Product image",
+        "locked": false,
+        "name": "product_image",
+        "required": false,
+        "resizable": true,
+        "responsive": true,
+        "show_loading": false,
+        "type": "image",
+        "occurrence": {}
+      },
+      {
+        "allow_new_line": false,
+        "display_width": null,
+        "id": "ecf5a22c-48e2-6eec-06d7-9871fb3438ce",
+        "label": "ProductId",
+        "locked": false,
+        "name": "productid",
+        "placeholder": "Product Id",
+        "required": false,
+        "show_emoji_picker": false,
+        "type": "text",
+        "validation_regex": ""
+      },
+      {
+        "allow_new_line": false,
+        "default": "hello world",
+        "display_width": null,
+        "id": "4f53481a-d08f-d0e4-fc9f-badb3abba180",
+        "label": "heading",
+        "locked": false,
+        "name": "heading",
+        "required": false,
+        "show_emoji_picker": true,
+        "type": "text",
+        "validation_regex": ""
+      }
+    ],
+    "default": {
+      "product_image": {
+        "size_type": "auto",
+        "src": "",
+        "alt": null,
+        "loading": "lazy"
+      },
+      "heading": "hello world"
+    },
+    "display_width": null,
+    "expanded": false,
+    "id": "84222715-d7b4-b762-0500-b122607a9e63",
+    "label": "Product Item",
+    "locked": false,
+    "name": "product_item",
+    "occurrence": {},
+    "required": false,
+    "tab": "CONTENT",
+    "type": "group"
+  }
+]
