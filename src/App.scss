@@ -1,0 +1,135 @@
+.cms-react-boilerplate__container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  width: 1170px;
+  margin: 0 auto;
+}
+
+.spinning-logo__container {
+  display: flex;
+  margin-right: auto;
+  margin-left: auto;
+  position: relative;
+  justify-content: space-evenly;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    margin: 0px 0px 0rem;
+  }
+
+  .item {
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px #0003;
+    position: relative;
+    margin-left: 15px;
+    width: 45%;
+    border-radius: 15px;
+
+    .imagebox {
+      background-color: #f3f3f3;
+      img {
+        width: 55%;
+      }
+    }
+    .textbox {
+      padding: 1rem 2rem;
+      border-radius: 15px;
+      background-color: #fff;
+
+      h3 {
+        font-family: Baloo 2;
+        font-size: 30px;
+        color: #000000;
+        font-weight: 700;
+        text-align: left;
+      }
+      .pricebox {
+        display: flex;
+
+        .price,
+        .compareAtPriceV2 {
+          text-align: left;
+        }
+        .compareAtPriceV2 {
+          margin-left: 10px;
+          color: #939393;
+          font-weight: 500;
+          text-decoration: line-through;
+        }
+      }
+      .des {
+        text-align: left;
+        margin-top: 2rem;
+      }
+    }
+    .icons {
+      display: grid;
+      justify-content: center;
+      border-top: 1px solid #eee;
+      border-bottom: 2px solid #eee;
+      width: 80%;
+      margin: 0 auto 2rem;
+      grid-template-columns: repeat(3, minmax(33%, 1fr));
+
+      .icon {
+        border-right: 2px solid #eee;
+        padding: 1rem;
+
+        &:last-of-type {
+          border-right: 0px solid #eee;
+        }
+        .imagebox {
+          background-color: transparent;
+
+          img {
+            width: 30%;
+          }
+        }
+      }
+    }
+    .bottomContentbox {
+      margin: 2rem;
+      display: flex;
+      justify-content: right;
+      span {
+        line-height: 1;
+        font-weight: 700;
+        font-family: 'Roboto Bold', sans-serif;
+        display: inline-block;
+        position: relative;
+        letter-spacing: 0.01em;
+        font-size: 15px;
+        min-height: 40px;
+        background: 0;
+        margin: initial !important;
+        font-size: 18px !important;
+        font-weight: 700 !important;
+        border-radius: 10px !important;
+        padding: 11px 50px !important;
+        background-color: #b1b1b1;
+        color: #fff;
+        border: 0;
+        pointer-events: none;
+        background-color: #fc0;
+        color: #000;
+        pointer-events: initial;
+
+        &:hover {
+          color: #fc0;
+          background-color: #000;
+        }
+      }
+    }
+  }
+}
