@@ -1,98 +1,85 @@
 import React, { useEffect, useState } from 'react';
 import './App.scss';
-import fields from '../src/modules/app.module/fields.json';
+
+const axios = require('axios');
+const baseUrl = 'https://ikhokha-sandbox-ikhokha-20686580.hs-sites.com'
 
 function App({ moduleData }) {
-  // eslint-disable-next-line no-console
-  // console.log(
-  //   'all of your data typically accessed via the "module" keyword in HubL is available as JSON here!',
-  //   moduleData,
-  // );
-  const [Images, setImages] = useState('');
   const [ProductData, setProductData] = useState('');
-  const [updated, setUpdated] = useState(false);
+  const [cart, setCart] = useState({ id: '', itemsCount: 0 });
 
   useEffect(() => {
-    getCollectByID();
+    const cart = JSON.parse(localStorage.getItem('cart'))
+
+    if (cart?.id) {
+      setCart(cart)
+    }
+
+    axios({
+      method: 'post',
+      url: `${baseUrl}/_hcms/api/getcollectionbyhandle`,
+      data: { handle: 'card-machines' }
+    }).then(response => {
+      setProductData(response.data.data.collection.products.edges);
+    }).catch(er => {
+      console.log('error', er)
+    })
   }, []);
 
-  console.log('moduleData:', moduleData);
-
-  const getCollectByID = () => {
-    const axios = require('axios');
-    let data = JSON.stringify({
-      query: `query CollectionByHandle($collectionHandle:String!) {
-  collectionByHandle(handle: $collectionHandle) {
-    image {
-      src
-    }
-    title
-    products(first: 100) {
-      edges {
-        node {
-          id
-          handle
-          title
-          onlineStoreUrl
-          media(first: 1) {
-            edges {
-              node {
-                alt
-                mediaContentType
-                previewImage {
-                  originalSrc
-                }
-              }
-            }
-          }
-          variants(first: 5) {
-            edges {
-              node {
-                compareAtPriceV2 {
-                  amount
-                }
-                priceV2 {
-                  amount
-                }
-              }
-            }
-          }
-              descriptionTagYotpoReviewsAvg: metafield(
-        namespace: "yotpo"
-        key: "reviews_average"
-      ) {
-        value
-        type
-      }
-        }
-      }
-    }
-  }
-}`,
-      variables: { collectionHandle: 'card-machines' },
-    });
-
-    let config = {
-      method: 'post',
-      url: 'https://ikhokha.myshopify.com/api/2021-07/graphql.json',
-      headers: {
-        'X-Shopify-Storefront-Access-Token': '8ee7fbad1afb2c1b468bbba4b4bf6dfd',
-        'Content-Type': 'application/json',
-      },
-      data: data,
-    };
-    axios(config)
-      .then(response => {
-        console.log(response.data.data.collectionByHandle.products.edges);
-        setProductData(response.data.data.collectionByHandle.products.edges);
+  const addToCart = (event, merchandiseId) => {
+    event.preventDefault();
+    //TODO: Refactoring below
+    if (cart?.id) {
+      axios({
+        method: 'post',
+        url: `${baseUrl}/_hcms/api/addlineitem`,
+        data: { cartId: cart.id, merchandiseId: merchandiseId, quantity: 1 }
       })
-      .catch(error => {
-        console.log(error);
-      });
+        .then((response) => {
+          const responseData = response.data;
+          const lineItems = responseData?.data?.cartLinesAdd?.cart?.lines?.edges
+
+          if (lineItems && lineItems.length > 0) {
+            const newCart = { ...cart, itemsCount: cart?.itemsCount + 1 }
+            setCart(newCart)
+            localStorage.setItem('cart', JSON.stringify(newCart))
+            window.dispatchEvent(new Event('storage'))
+            alert('item added')
+          } else {
+            console.log('coud not add line item')
+          }
+
+        }).catch((error) => {
+          console.log(error)
+        })
+    } else {
+      axios({
+        method: 'post',
+        url: `${baseUrl}/_hcms/api/createcart`,
+        data: { merchandiseId: merchandiseId, quantity: 1 }
+      })
+        .then((response) => {
+          const responseData = response.data;
+          const createdCart = responseData?.data?.cartCreate?.cart
+
+          if (createdCart?.id) {
+            const newCart = { id: createdCart.id, itemsCount: 1 }
+            localStorage.setItem('cart', JSON.stringify(newCart))
+            window.dispatchEvent(new Event('storage'))
+            setCart(newCart)
+          } else {
+            console.log('cart not created')
+          }
+
+
+        }).catch((error) => {
+          console.log(error)
+        })
+    }
   };
 
   const getPrice = productId => {
-    const product = ProductData?.find(p => p.node.id === productId);
+    const product = ProductData?.find(p => p.node.handle === productId);
     return product;
   };
 
@@ -109,7 +96,7 @@ function App({ moduleData }) {
                 <div className="imagebox">
                   <img
                     src={
-                      productItem?.node?.media?.edges[0]?.node?.previewImage
+                      productItem?.node?.variants?.edges[0]?.node?.image
                         ?.originalSrc
                     }
                     alt=""
@@ -152,7 +139,7 @@ function App({ moduleData }) {
                     })}
                 </div>
                 <div className="bottomContentbox">
-                  <span>add to cart </span>
+                  <span onClick={(event) => addToCart(event, productItem?.node?.variants?.edges[0]?.node?.id)}>add to cart </span>
                 </div>
               </div>
             );

@@ -3,13 +3,13 @@ const HubSpotAutoUploadPlugin = require('@hubspot/webpack-cms-plugins/HubSpotAut
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const autoprefixer = require('autoprefixer');
-
+const Dotenv = require('dotenv-webpack');
 
 const hubspotConfig = ({ portal, autoupload } = {}) => {
   return {
     target: 'web',
     entry: {
-      'main': './src/index.js'
+      main: './src/index.js',
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
@@ -27,6 +27,20 @@ const hubspotConfig = ({ portal, autoupload } = {}) => {
             loader: 'babel-loader',
           },
         },
+        { test: /\.css$/, loader: 'style-loader!css-loader' },
+        
+        {
+          test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          include: path.resolve(__dirname, './node_modules/bootstrap-icons/font/fonts'),
+          use: {
+              loader: 'file-loader',
+              options: {
+                  name: '[name].[ext]',
+                  outputPath: 'webfonts',
+                  publicPath: '../webfonts',
+              },
+          }
+      },
         {
           test: /\.s[ac]ss$/i,
           use: [
@@ -35,8 +49,8 @@ const hubspotConfig = ({ portal, autoupload } = {}) => {
             {
               loader: 'postcss-loader',
               options: {
-                plugins: () => [autoprefixer()]
-              }
+                plugins: () => [autoprefixer()],
+              },
             },
             'sass-loader',
           ],
@@ -51,6 +65,7 @@ const hubspotConfig = ({ portal, autoupload } = {}) => {
         },
       ],
     },
+
     plugins: [
       new HubSpotAutoUploadPlugin({
         portal,
@@ -68,6 +83,12 @@ const hubspotConfig = ({ portal, autoupload } = {}) => {
           to: 'modules',
         },
       ]),
+      new Dotenv({
+        allowEmptyValues: true,
+        systemvars: true,
+        silent: true,
+        defaults: false,
+      }),
     ],
   };
 };
