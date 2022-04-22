@@ -16,6 +16,7 @@
   margin-left: auto;
   position: relative;
   justify-content: space-evenly;
+  // flex-wrap: wrap;
 
   h1,
   h2,
@@ -35,6 +36,7 @@
     margin-left: 15px;
     width: 45%;
     border-radius: 15px;
+    margin-bottom: 5rem;
 
     .imagebox {
       background-color: #f3f3f3;
@@ -49,13 +51,20 @@
 
       h3 {
         font-family: Baloo 2;
-        font-size: 30px;
+        font-size: 1.3rem;
         color: #000000;
         font-weight: 700;
         text-align: left;
       }
       .pricebox {
         display: flex;
+
+        h4 {
+          font-size: 1.2vw;
+        }
+        .Price {
+          color: #df2c4f;
+        }
 
         .price,
         .compareAtPriceV2 {
@@ -70,7 +79,7 @@
       }
       .des {
         text-align: left;
-        margin-top: 2rem;
+        margin-top: 0.5rem;
       }
     }
     .icons {
@@ -103,6 +112,7 @@
       display: flex;
       justify-content: right;
       span {
+        cursor: pointer;
         line-height: 1;
         font-weight: 700;
         font-family: 'Roboto Bold', sans-serif;
