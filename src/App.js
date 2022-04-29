@@ -29,7 +29,9 @@ function App({ moduleData }) {
   const addToCart = (event, merchandiseId) => {
     event.preventDefault();
     //TODO: Refactoring below
+
     if (cart?.id) {
+      const latestCartQuantity = JSON.parse(localStorage.getItem('cart'))?.itemsCount || 0
       axios({
         method: 'post',
         url: `${baseUrl}/_hcms/api/addlineitem`,
@@ -40,7 +42,7 @@ function App({ moduleData }) {
           const lineItems = responseData?.data?.cartLinesAdd?.cart?.lines?.edges
 
           if (lineItems && lineItems.length > 0) {
-            const newCart = { ...cart, itemsCount: cart?.itemsCount + 1 }
+            const newCart = { ...cart, itemsCount: latestCartQuantity + 1 }
             setCart(newCart)
             localStorage.setItem('cart', JSON.stringify(newCart))
             window.dispatchEvent(new Event('storage'))

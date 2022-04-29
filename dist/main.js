@@ -18692,9 +18692,12 @@ function App_App(_ref) {
   }, []);
 
   var addToCart = function addToCart(event, merchandiseId) {
-    event.preventDefault();
+    event.preventDefault(); //TODO: Refactoring below
 
     if (cart !== null && cart !== void 0 && cart.id) {
+      var _JSON$parse;
+
+      var latestCartQuantity = ((_JSON$parse = JSON.parse(localStorage.getItem('cart'))) === null || _JSON$parse === void 0 ? void 0 : _JSON$parse.itemsCount) || 0;
       axios({
         method: 'post',
         url: "".concat(baseUrl, "/_hcms/api/addlineitem"),
@@ -18707,12 +18710,11 @@ function App_App(_ref) {
         var _responseData$data, _responseData$data$ca, _responseData$data$ca2, _responseData$data$ca3;
 
         var responseData = response.data;
-        console.log(responseData, '///////////////// Response data');
         var lineItems = responseData === null || responseData === void 0 ? void 0 : (_responseData$data = responseData.data) === null || _responseData$data === void 0 ? void 0 : (_responseData$data$ca = _responseData$data.cartLinesAdd) === null || _responseData$data$ca === void 0 ? void 0 : (_responseData$data$ca2 = _responseData$data$ca.cart) === null || _responseData$data$ca2 === void 0 ? void 0 : (_responseData$data$ca3 = _responseData$data$ca2.lines) === null || _responseData$data$ca3 === void 0 ? void 0 : _responseData$data$ca3.edges;
 
         if (lineItems && lineItems.length > 0) {
           var newCart = _objectSpread(_objectSpread({}, cart), {}, {
-            itemsCount: (cart === null || cart === void 0 ? void 0 : cart.itemsCount) + 1
+            itemsCount: latestCartQuantity + 1
           });
 
           setCart(newCart);
@@ -18723,7 +18725,6 @@ function App_App(_ref) {
           console.log('coud not add line item');
         }
       }).catch(function (error) {
-        // communicate error
         console.log(error);
       });
     } else {
