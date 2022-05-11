@@ -1,84 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import './App.scss';
-
-const axios = require('axios');
-const baseUrl = 'https://ikhokha-sandbox-ikhokha-20686580.hs-sites.com'
+import AcceptedPaymentsHeading from './components/item/AcceptedPaymentsHeading';
+import AcceptedPaymentsIcons from './components/item/AcceptedPaymentsIcons';
+import ProductDescription from './components/item/ProductDescription';
+import ProductImage from './components/item/ProductImage';
+import ProductName from './components/item/ProductName';
+import ProductPrice from './components/item/ProductPrice';
+import ProductSecifications from './components/item/ProductSecifications';
+import ValueAddedServices from './components/item/ValueAddedServices';
+import ProductCard from './components/ProductCard';
+import Productadded from './utils/Productadded.js';
+import productTitleCleaner from './utils/productTitleCleaner';
+import ShowProductaddedAlert from './utils/ShowProductaddedAlert';
+import { getCollectionHandle } from './utils/getCollectionHandle';
+import { AddItemToCart } from './utils/AddItemToCart';
 
 function App({ moduleData }) {
+  const [ItemAddedText, setItemAddedText] = useState('Adding item to cart.');
   const [ProductData, setProductData] = useState('');
   const [cart, setCart] = useState({ id: '', itemsCount: 0 });
 
   useEffect(() => {
-    const cart = JSON.parse(localStorage.getItem('cart'))
+    const cart = JSON.parse(localStorage.getItem('cart'));
 
     if (cart?.id) {
-      setCart(cart)
+      setCart(cart);
     }
 
-    axios({
-      method: 'post',
-      url: `${baseUrl}/_hcms/api/getcollectionbyhandle`,
-      data: { handle: 'card-machines' }
-    }).then(response => {
-      setProductData(response.data.data.collection.products.edges);
-    }).catch(er => {
-      console.log('error', er)
-    })
+    getCollectionHandle(setProductData, moduleData?.collection_id);
   }, []);
-
-  const addToCart = (event, merchandiseId) => {
-    event.preventDefault();
-    //TODO: Refactoring below
-
-    if (cart?.id) {
-      const latestCartQuantity = JSON.parse(localStorage.getItem('cart'))?.itemsCount || 0
-      axios({
-        method: 'post',
-        url: `${baseUrl}/_hcms/api/addlineitem`,
-        data: { cartId: cart.id, merchandiseId: merchandiseId, quantity: 1 }
-      })
-        .then((response) => {
-          const responseData = response.data;
-          const lineItems = responseData?.data?.cartLinesAdd?.cart?.lines?.edges
-
-          if (lineItems && lineItems.length > 0) {
-            const newCart = { ...cart, itemsCount: latestCartQuantity + 1 }
-            setCart(newCart)
-            localStorage.setItem('cart', JSON.stringify(newCart))
-            window.dispatchEvent(new Event('storage'))
-            alert('item added')
-          } else {
-            console.log('coud not add line item')
-          }
-
-        }).catch((error) => {
-          console.log(error)
-        })
-    } else {
-      axios({
-        method: 'post',
-        url: `${baseUrl}/_hcms/api/createcart`,
-        data: { merchandiseId: merchandiseId, quantity: 1 }
-      })
-        .then((response) => {
-          const responseData = response.data;
-          const createdCart = responseData?.data?.cartCreate?.cart
-
-          if (createdCart?.id) {
-            const newCart = { id: createdCart.id, itemsCount: 1 }
-            localStorage.setItem('cart', JSON.stringify(newCart))
-            window.dispatchEvent(new Event('storage'))
-            setCart(newCart)
-          } else {
-            console.log('cart not created')
-          }
-
-
-        }).catch((error) => {
-          console.log(error)
-        })
-    }
-  };
 
   const getPrice = productId => {
     const product = ProductData?.find(p => p.node.handle === productId);
@@ -86,68 +36,101 @@ function App({ moduleData }) {
   };
 
   return (
-    <div className="cms-react-boilerplate__container">
-      <div className="spinning-logo__container">
-        {moduleData?.product_item?.length &&
-          ProductData?.length &&
-          moduleData.product_item.map((i, index) => {
-            const productItem = getPrice(i.productid);
+    <>
+      <div className="cms-react-boilerplate__container ">
+        <div
+          className={`spinning-logo__container  ${moduleData?.collection_id}`}
+        >
+          {moduleData?.product_item?.length &&
+            ProductData?.length &&
+            moduleData.product_item.map((i, index) => {
+              const productItem = getPrice(i.productid);
 
-            return (
-              <div className="item" key={index}>
-                <div className="imagebox">
-                  <img
-                    src={
-                      productItem?.node?.variants?.edges[0]?.node?.image
+              return (
+                <div
+                  id={i.productid}
+                  className={`item  ${moduleData?.collection_id}`}
+                  key={index}
+                >
+                  <Productadded
+                    ItemAddedText={ItemAddedText}
+                    ProductName={productTitleCleaner(productItem?.node?.title)}
+                  />
+                  <ProductImage
+                    Image={
+                      productItem?.node?.media?.edges[0]?.node?.previewImage
                         ?.originalSrc
                     }
-                    alt=""
                   />
-                </div>
+                  <div className="specifications">
+                    <div className="textbox">
+                      <ProductName
+                        Name={productTitleCleaner(productItem?.node?.title)}
+                      />
+                      <ProductPrice
+                        price={
+                          productItem?.node?.variants?.edges[0]?.node?.priceV2
+                            ?.amount
+                        }
+                        compareAtPriceV2={
+                          productItem?.node?.variants?.edges[0]?.node
+                            ?.compareAtPriceV2?.amount
+                        }
+                      />
 
-                <div className="textbox">
-                  <h3>{productItem?.node?.title}</h3>
-                  <div className="pricebox">
-                    <h4 className="Price">
-                      R
-                      {
-                        productItem?.node?.variants?.edges[0]?.node?.priceV2
-                          ?.amount
-                      }
-                    </h4>
-                    <h4 className="compareAtPriceV2">
-                      R
-                      {
-                        productItem?.node?.variants?.edges[0]?.node
-                          ?.compareAtPriceV2?.amount
-                      }
-                    </h4>
-                  </div>
+                      <ProductDescription Description={i.heading} />
+                    </div>
+                    <div className="icons">
+                      {i.secifications &&
+                        i?.secifications.map((icon, index) => {
+                          return (
+                            <ProductSecifications
+                              text={icon?.secifications_text}
+                              image={icon?.secification_image?.src}
+                              index={index}
+                            />
+                          );
+                        })}
+                    </div>
+                    <AcceptedPaymentsHeading
+                      heading={i.accepted_payments_heading}
+                    />
+                    <AcceptedPaymentsIcons icons={i.accepted_payments} />
+                    <ValueAddedServices
+                      Values={i.value_added_services}
+                      Productid={i.productid}
+                    />
 
-                  <div className="des">
-                    <p>{i.heading}</p>
+                    <div className="bottomContentbox">
+                      <a href={'/' + i.productid} className="white-btn">
+                        Learn more
+                      </a>
+                      <a
+                        href=""
+                        className="yellow-btn"
+                        onClick={event => {
+                          AddItemToCart(
+                            event,
+                            productItem?.node?.variants?.edges[0]?.node?.id,
+                            i.productid,
+                            cart,
+                            setCart,
+                            setItemAddedText,
+                          );
+                          ShowProductaddedAlert(i.productid);
+                        }}
+                      >
+                        Add to cart
+                      </a>
+                    </div>
                   </div>
                 </div>
-                <div className="icons">
-                  {i.product_image &&
-                    i?.product_image.map((icon, index) => {
-                      return (
-                        <div className="icon" key={index}>
-                          <div className="imagebox">
-                            <img src={icon?.src} alt="" />
-                          </div>
-                        </div>
-                      );
-                    })}
-                </div>
-                <div className="bottomContentbox">
-                  <span onClick={(event) => addToCart(event, productItem?.node?.variants?.edges[0]?.node?.id)}>add to cart </span>
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
+        </div>
       </div>
-    </div>
+      {/* <ProductCard /> */}
+    </>
   );
 }
 

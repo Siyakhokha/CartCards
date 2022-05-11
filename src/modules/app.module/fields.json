@@ -1,29 +1,15 @@
 [
   {
+    "type": "text",
+    "validation_regex": "",
+    "label": "collection ID",
+    "name": "collection_id"
+  },
+  {
     "children": [
-      {
-        "default": {
-          "size_type": "auto",
-          "src": "",
-          "alt": null,
-          "loading": "lazy"
-        },
-        "display_width": null,
-        "id": "153a9954-dcdd-6330-3440-8631638a75c4",
-        "label": "Product image",
-        "locked": false,
-        "name": "product_image",
-        "required": false,
-        "resizable": true,
-        "responsive": true,
-        "show_loading": false,
-        "type": "image",
-        "occurrence": {}
-      },
       {
         "allow_new_line": false,
         "display_width": null,
-        "id": "ecf5a22c-48e2-6eec-06d7-9871fb3438ce",
         "label": "ProductId",
         "locked": false,
         "name": "productid",
@@ -34,10 +20,120 @@
         "validation_regex": ""
       },
       {
+        "type": "group",
+        "label": "Value added services",
+        "children": [
+          {
+            "type": "text",
+
+            "validation_regex": "",
+            "label": "Value added services text",
+            "name": "value_added_services_text"
+          },
+          {
+            "type": "text",
+            "validation_regex": "",
+            "label": "Value added services tooltip text",
+            "name": "value_added_services_tooltip_text"
+          },
+          {
+            "type": "image",
+            "default": {
+              "size_type": "auto",
+              "src": "",
+              "alt": null,
+              "loading": "lazy"
+            },
+            "resizable": true,
+            "responsive": true,
+            "show_loading": false,
+            "label": "Value added services tooltip image",
+            "name": "value_added_services_tooltip_image"
+          }
+        ],
+        "name": "value_added_services",
+        "default": {
+          "value_added_services_tooltip_image": {
+            "size_type": "auto",
+            "src": "",
+            "alt": null,
+            "loading": "lazy"
+          }
+        },
+        "occurrence": {}
+      },
+      {
+        "type": "group",
+        "label": "Secifications",
+        "children": [
+          {
+            "type": "text",
+
+            "validation_regex": "",
+            "label": "Secifications  Text",
+            "name": "secifications_text"
+          },
+          {
+            "type": "image",
+            "default": {
+              "size_type": "auto",
+              "src": "",
+              "alt": null,
+              "loading": "lazy"
+            },
+            "resizable": true,
+            "responsive": true,
+            "show_loading": false,
+            "label": "Secification image",
+            "name": "secification_image"
+          }
+        ],
+        "name": "secifications",
+        "default": {
+          "secification_image": {
+            "size_type": "auto",
+            "src": "",
+            "alt": null,
+            "loading": "lazy"
+          }
+        },
+        "occurrence": {}
+      },
+      {
+        "default": {
+          "size_type": "auto",
+          "src": "",
+          "alt": null,
+          "loading": "lazy"
+        },
+        "display_width": null,
+        "label": "Accepted Payments icons",
+        "locked": false,
+        "name": "accepted_payments",
+        "required": false,
+        "resizable": true,
+        "responsive": true,
+        "show_loading": false,
+        "type": "image",
+        "occurrence": {}
+      },
+      {
+        "allow_new_line": false,
+        "display_width": null,
+        "label": "Accepted Payments Heading",
+        "locked": false,
+        "name": "accepted_payments_heading",
+        "placeholder": "",
+        "required": false,
+        "show_emoji_picker": false,
+        "type": "text",
+        "validation_regex": ""
+      },
+
+      {
         "allow_new_line": false,
         "default": "hello world",
         "display_width": null,
-        "id": "4f53481a-d08f-d0e4-fc9f-badb3abba180",
         "label": "heading",
         "locked": false,
         "name": "heading",
@@ -58,7 +154,6 @@
     },
     "display_width": null,
     "expanded": false,
-    "id": "84222715-d7b4-b762-0500-b122607a9e63",
     "label": "Product Item",
     "locked": false,
     "name": "product_item",
