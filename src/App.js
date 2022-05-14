@@ -8,31 +8,68 @@ import ProductName from './components/item/ProductName';
 import ProductPrice from './components/item/ProductPrice';
 import ProductSecifications from './components/item/ProductSecifications';
 import ValueAddedServices from './components/item/ValueAddedServices';
-import ProductCard from './components/ProductCard';
 import Productadded from './utils/Productadded.js';
 import productTitleCleaner from './utils/productTitleCleaner';
 import ShowProductaddedAlert from './utils/ShowProductaddedAlert';
 import { getCollectionHandle } from './utils/getCollectionHandle';
 import { AddItemToCart } from './utils/AddItemToCart';
+import { getCart } from './services/cart-service'
 
 function App({ moduleData }) {
   const [ItemAddedText, setItemAddedText] = useState('Adding item to cart.');
   const [ProductData, setProductData] = useState('');
+  const [CartData, setCartData] = useState(null);
+  const [Reload, setReload] = useState(false);
   const [cart, setCart] = useState({ id: '', itemsCount: 0 });
+
+  useEffect(() => {
+    window.addEventListener("storage", quantityChange);
+    getCollectionHandle(setProductData, moduleData?.collection_id);
+  }, []);
 
   useEffect(() => {
     const cart = JSON.parse(localStorage.getItem('cart'));
 
     if (cart?.id) {
       setCart(cart);
+      getCart({ cartId: cart.id })
+        .then(resp => {
+          const newCartData = createCartData(resp?.data?.cart)
+          setCartData(newCartData)
+        })
+        .catch(er => {
+          console.log('error', er);
+        })
+    } else {
+      setCartData(null)
+      setCart({ id: '', itemsCount: 0 })
     }
-
-    getCollectionHandle(setProductData, moduleData?.collection_id);
-  }, []);
+  }, [Reload]);
+  
+  const quantityChange = () => {
+      setReload((prevLoad) => {
+        return !prevLoad
+      })
+  }
 
   const getPrice = productId => {
     const product = ProductData?.find(p => p.node.handle === productId);
     return product;
+  };
+
+  const createItems = (item) => {
+    return {
+      id: item.node.id, 
+      quantity: item.node.quantity, 
+      merchandiseId:  item.node.merchandise.id
+    }
+  };
+
+  const createCartData = (cartResponse) => {
+    return { 
+      id: cartResponse?.id,
+      items: cartResponse?.lines?.edges?.map(item => createItems(item))
+     }
   };
 
   return (
@@ -114,6 +151,7 @@ function App({ moduleData }) {
                             productItem?.node?.variants?.edges[0]?.node?.id,
                             i.productid,
                             cart,
+                            CartData,
                             setCart,
                             setItemAddedText,
                           );
