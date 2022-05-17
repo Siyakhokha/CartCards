@@ -20,6 +20,7 @@ function App({ moduleData }) {
   const [ProductData, setProductData] = useState('');
   const [CartData, setCartData] = useState(null);
   const [Reload, setReload] = useState(false);
+  const [enableAddToCart, setEnableAddToCart] = useState(true);
   const [cart, setCart] = useState({ id: '', itemsCount: 0 });
 
   useEffect(() => {
@@ -144,7 +145,7 @@ function App({ moduleData }) {
                       </a>
                       <a
                         href=""
-                        className="yellow-btn"
+                        className={`yellow-btn ${!enableAddToCart ? "btn-disable" : ""}`}
                         onClick={event => {
                           AddItemToCart(
                             event,
@@ -154,6 +155,7 @@ function App({ moduleData }) {
                             CartData,
                             setCart,
                             setItemAddedText,
+                            setEnableAddToCart
                           );
                           ShowProductaddedAlert(i.productid);
                         }}

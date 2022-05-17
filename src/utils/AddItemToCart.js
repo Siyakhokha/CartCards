@@ -10,10 +10,12 @@ export const AddItemToCart = (
   cartData,
   setCart,
   setItemAddedText,
+  setEnableAddToCart
 ) => {
   event.preventDefault();
   //TODO: Refactoring below
     const localCart = JSON.parse(localStorage.getItem('cart'));
+    setEnableAddToCart(false)
 
   if (cart?.id) {
     const existingLineItem = cartData?.items?.find(item => item.merchandiseId === merchandiseId)
@@ -30,7 +32,7 @@ export const AddItemToCart = (
           const newCart = lines?.length
             ? { ...cart, itemsCount: localCart.itemsCount + 1 }
             : { ...cart, itemsCount: 0 };
-            updateCartState(Id, newCart, setCart, setItemAddedText)
+            updateCartState(Id, newCart, setCart, setItemAddedText, setEnableAddToCart)
           
         })
         .catch(error => {
@@ -60,6 +62,7 @@ export const AddItemToCart = (
             setCart(newCart);
             localStorage.setItem('cart', JSON.stringify(newCart));
             window.dispatchEvent(new Event('storage'));
+            setEnableAddToCart(true)
             setItemAddedText('Item added to cart');
             setTimeout(() => {
               ShowProductaddedAlert(Id);
@@ -86,6 +89,7 @@ export const AddItemToCart = (
           localStorage.setItem('cart', JSON.stringify(newCart));
           window.dispatchEvent(new Event('storage'));
           setCart(newCart);
+          setEnableAddToCart(true)
           setItemAddedText('Item added to cart');
           setTimeout(() => {
             ShowProductaddedAlert(Id);
@@ -100,10 +104,11 @@ export const AddItemToCart = (
   }
 };
 
-const updateCartState = (Id, newCart, setCart, setItemAddedText) => {
+const updateCartState = (Id, newCart, setCart, setItemAddedText, setEnableAddToCart) => {
   setCart(newCart);
   localStorage.setItem('cart', JSON.stringify(newCart));
   window.dispatchEvent(new Event('storage'));
+  setEnableAddToCart(true)
 
   setItemAddedText('Item added to cart');
   setTimeout(() => {
