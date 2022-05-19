@@ -6,6 +6,18 @@
     "name": "collection_id"
   },
   {
+    "allow_new_line": false,
+    "default": "Cash Register Package",
+    "display_width": null,
+    "label": "heading",
+    "locked": false,
+    "name": "heading",
+    "required": false,
+    "show_emoji_picker": true,
+    "type": "text",
+    "validation_regex": ""
+  },
+  {
     "children": [
       {
         "allow_new_line": false,
@@ -89,6 +101,57 @@
           }
         ],
         "name": "secifications",
+        "default": {
+          "secification_image": {
+            "size_type": "auto",
+            "src": "",
+            "alt": null,
+            "loading": "lazy"
+          }
+        },
+        "occurrence": {}
+      },
+
+      {
+        "allow_new_line": false,
+        "display_width": null,
+        "label": "What's In The Box Heading",
+        "locked": false,
+        "name": "WhatsInTheBoxHeading",
+        "placeholder": "Whats In The Box",
+        "required": false,
+        "show_emoji_picker": false,
+        "type": "text",
+        "validation_regex": ""
+      },
+
+      {
+        "type": "group",
+        "label": "WhatsInTheBox",
+        "children": [
+          {
+            "type": "text",
+
+            "validation_regex": "",
+            "label": "Item  Text",
+            "name": "item_text"
+          },
+          {
+            "type": "image",
+            "default": {
+              "size_type": "auto",
+              "src": "",
+              "alt": null,
+              "loading": "lazy"
+            },
+            "resizable": true,
+            "responsive": true,
+            "show_loading": false,
+            "label": "Item image",
+            "name": "item_image"
+          }
+        ],
+        "name": "Item",
         "default": {
           "secification_image": {
             "size_type": "auto",

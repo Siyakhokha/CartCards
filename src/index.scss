@@ -12,6 +12,7 @@
   }
 }
 
+<<<<<<< Updated upstream
 .m-0 {
   margin: 0 !important;
 }
@@ -456,5 +457,24 @@
   .container-sm,
   .container {
     max-width: 1320px;
+=======
+.container {
+  display: flex;
+  position: relative;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+  width: 1170px;
+}
+
+@media screen and (max-width: 767px) {
+  .container {
+    width: 100%;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    margin-right: auto;
+    margin-left: auto;
+>>>>>>> Stashed changes
   }
 }

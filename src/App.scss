@@ -6,20 +6,44 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+<<<<<<< Updated upstream
 
+=======
+  max-width: 100%;
+>>>>>>> Stashed changes
   margin: 0 auto;
-
   overflow: hidden;
+  margin: 2rem 0;
+
+  .Heading {
+    text-align: left;
+    width: 100%;
+    h1 {
+      font-size: 32px;
+      font-family: 'Roboto', sans-serif;
+
+      color: #1d1d1b;
+      font-weight: 500;
+      margin: 2rem 0;
+    }
+  }
 }
+.cms-react-boilerplate__container.accessories {
+  background-color: #f7f7f7;
+}
+// .spinning-logo__container.ikhokha-register {
+//   width: 100%;
+// }
 
 .spinning-logo__container {
-  display: flex;
-  position: relative;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
-
+  // display: flex;
+  // position: relative;
+  // justify-content: space-evenly;
+  // flex-wrap: wrap;
+  // margin-right: -15px;
+  // margin-left: -15px;
+  // margin-bottom: 2rem;
+  // width: 1170px;
   h1,
   h2,
   h3,
@@ -30,6 +54,13 @@
     margin: 0px 0px 0rem;
   }
 
+  p {
+    font-size: 16px;
+    color: #1d1d1b;
+    font-weight: 400;
+    font-family: 'Roboto', sans-serif;
+  }
+
   .item.accessories {
     background: #fff;
     position: relative;
@@ -38,6 +69,10 @@
     flex: 0 0 33%;
     max-width: 31%;
     box-shadow: 0px 5px 20px #1d1d1b1a;
+<<<<<<< Updated upstream
+=======
+    margin-bottom: 2rem;
+>>>>>>> Stashed changes
 
     .product-added {
       position: absolute;
@@ -66,7 +101,10 @@
         opacity: 1;
       }
     }
-
+    .ProductDescription {
+      display: flex;
+      flex-direction: column-reverse;
+    }
     .product-added-alert {
       // transform: translate(0%, 37%);
       background-color: #cceff1;
@@ -96,15 +134,24 @@
     }
 
     .imagebox {
+<<<<<<< Updated upstream
       border-radius: 16px;
+=======
+      background-color: #fff;
+>>>>>>> Stashed changes
       overflow: hidden;
-
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
       img {
         width: 60%;
       }
     }
 
     .specifications {
+<<<<<<< Updated upstream
+=======
+      box-shadow: 0px 0px 0px #1d1d1b00;
+>>>>>>> Stashed changes
       border-radius: 16px;
       margin-top: -1rem;
 
@@ -123,7 +170,7 @@
         .pricebox {
           display: flex;
           align-items: center;
-
+          margin-top: 1rem;
           .price {
             font-family: 'Roboto', sans-serif;
             font-size: 24px;
@@ -170,24 +217,40 @@
           display: flex;
           box-shadow: 0px 1px 8px #e8e8e7;
           border-radius: 20px;
-          margin: 0.5rem;
+          margin: 0.1rem;
           align-items: center;
-          padding: 0.2rem 0.6rem !important;
+          padding: 0.4rem 0.6rem !important;
           padding: 0%;
+          background-color: #09828b;
+
+          &:first-child {
+            background-color: transparent;
+            box-shadow: 0px 0px 0px #e8e8e7;
+            p {
+              color: #3f3e38;
+              font-size: 14px;
+            }
+          }
+
           p {
             font-family: 'Roboto', sans-serif;
-            font-size: 16px;
+            font-size: 12px;
             letter-spacing: 0px;
-            color: #3f3e38;
+            color: #fff;
             font-weight: 500;
           }
           .imagebox {
             background-color: transparent;
             display: flex;
             justify-content: center;
+<<<<<<< Updated upstream
             border-radius: 0;
+=======
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+>>>>>>> Stashed changes
             img {
-              width: 30%;
+              width: 100%;
             }
           }
         }
@@ -233,19 +296,19 @@
             padding: 0;
             margin: 0;
             position: relative;
-            margin-top: -14px;
+            margin-top: -10px;
 
             .tooltipstext {
               box-shadow: 0px 3px 15px #00000029;
               opacity: 1;
               position: absolute !important;
               z-index: 1;
-              margin-left: 1rem;
-              margin-top: 0.8rem;
+              margin-left: 1.5rem;
+              margin-top: -1.8rem;
               text-align: left;
               background: #353936;
               color: #fff;
-              font-family: Arial;
+
               font-size: 12px;
               line-height: 1.2;
               width: 13.5rem;
@@ -329,9 +392,668 @@
       }
     }
   }
+<<<<<<< Updated upstream
 }
 
 @media screen and (max-width: 480px) {
+=======
+
+  .item.ikhokha-register {
+    width: 100%;
+    border-radius: 15px;
+    flex: 0 0 100%;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 33%);
+    min-height: 44rem;
+    background-image: linear-gradient(#e8e8e7, #f7f7f7);
+    align-items: center;
+    grid-gap: 10px;
+    margin-bottom: 2rem;
+
+    .product-added {
+      position: absolute;
+      color: #000;
+      top: 9px;
+      width: 60%;
+      border-radius: 8px;
+      opacity: 1;
+      text-align: center;
+      vertical-align: middle;
+      padding: 0.7rem;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      visibility: hidden;
+      // transform: translate(97%, 37%);
+      transition: transform 0.5s;
+
+      p {
+        font-family: 'Roboto', sans-serif;
+        text-align: left;
+        font-size: 14px;
+        font-weight: normal;
+        letter-spacing: 0px;
+        color: #1d1d1b;
+        opacity: 1;
+      }
+    }
+    .ProductDescription {
+      flex-direction: column;
+    }
+    .product-added-alert {
+      // transform: translate(0%, 37%);
+      background-color: #cceff1;
+      visibility: visible;
+      opacity: 1;
+      animation-name: fadeInOpacity;
+      animation-iteration-count: 1;
+      animation-timing-function: ease-in;
+      animation-duration: 0.5s;
+    }
+
+    .fade-in {
+      opacity: 1;
+      animation-name: fadeInOpacity;
+      animation-iteration-count: 1;
+      animation-timing-function: ease-in;
+      animation-duration: 0.5s;
+    }
+
+    @keyframes fadeInOpacity {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .imagebox {
+      background-color: transparent;
+      overflow: hidden;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+      img {
+        width: 100%;
+      }
+    }
+
+    .specifications {
+      background-color: #fff;
+
+      .textbox {
+        padding: 1rem 2rem;
+        border-radius: 15px;
+        background-color: #fff;
+
+        h3 {
+          font-family: 'Roboto', sans-serif;
+          font-size: 20px;
+          color: #8b8b87;
+          text-align: left;
+        }
+        .pricebox {
+          display: flex;
+          align-items: center;
+          margin-top: 1rem;
+          .price {
+            font-family: 'Roboto', sans-serif;
+            font-size: 24px;
+            letter-spacing: 0.67px;
+            color: #1d1d1b;
+          }
+          .price,
+          .compareAtPriceV2 {
+            font-family: 'Roboto', sans-serif;
+            text-align: left;
+          }
+          .compareAtPriceV2 {
+            font-size: 18px;
+            margin-left: 10px;
+            color: #939393;
+            font-weight: normal;
+            text-decoration: line-through;
+          }
+        }
+        .des {
+          text-align: left;
+          margin-top: 1rem;
+        }
+      }
+
+      .accepted-payments-heading {
+        text-align: left;
+        margin: 1rem auto;
+        padding: 0rem 2rem;
+        p {
+          font-family: 'Roboto', sans-serif;
+          font-size: 16px;
+          letter-spacing: 0px;
+          color: #3f3e38;
+          font-weight: 500;
+        }
+      }
+
+      .icons {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0rem 1.5rem;
+        .icon {
+          display: flex;
+          box-shadow: 0px 1px 8px #e8e8e7;
+          border-radius: 20px;
+          margin: 0.1rem 0.5rem;
+          align-items: center;
+          padding: 0.4rem 0.6rem !important;
+          padding: 0%;
+          background-color: #fff;
+          margin-bottom: 0.5rem;
+
+          p {
+            font-size: 14px;
+            color: #3f3e38;
+            font-weight: 500;
+          }
+          .imagebox {
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+            img {
+              width: 100%;
+            }
+          }
+        }
+      }
+
+      .accepted-payments {
+        .icon {
+          display: flex;
+          box-shadow: 0px 0px 0px #e8e8e7;
+          border-radius: 20px;
+          margin: 0.2rem;
+          align-items: center;
+          padding: 0.5rem 0.9rem !important;
+          border: 1px solid #d1d1d1;
+          border-radius: 20px;
+          .imagebox {
+            img {
+              width: 100%;
+            }
+          }
+        }
+      }
+
+      .Value_added_services {
+        margin: 1rem 0 0 0.2rem;
+        .services {
+          display: flex;
+          justify-content: space-around;
+          align-content: center;
+          position: relative;
+          p {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            color: #1d1d1b;
+            width: 100%;
+          }
+
+          img {
+            width: 90%;
+            cursor: pointer;
+            margin-left: 0.5rem;
+          }
+          .tooltips {
+            padding: 0;
+            margin: 0;
+            position: relative;
+            margin-top: -10px;
+
+            .tooltipstext {
+              box-shadow: 0px 3px 15px #00000029;
+              opacity: 1;
+              position: absolute !important;
+              z-index: 1;
+              margin-left: 1.5rem;
+              margin-top: -1.8rem;
+              text-align: left;
+              background: #353936;
+              color: #fff;
+
+              font-size: 12px;
+              line-height: 1.2;
+              width: 13.5rem;
+              border-radius: 8px;
+              padding: 5px;
+              visibility: hidden;
+
+              &:after {
+                content: '';
+                position: absolute;
+                display: block;
+                width: 0;
+                z-index: 1;
+                border-style: solid;
+                border-color: transparent #353936;
+                border-width: 6px 15px 6px 0;
+                top: 50%;
+                left: -12px;
+                margin-top: -20px;
+              }
+            }
+            .showTooltip {
+              visibility: visible;
+            }
+          }
+        }
+      }
+
+      .bottomContentbox {
+        margin: 1rem 0rem 0rem 2rem;
+        display: flex;
+        justify-content: flex-start;
+        padding-bottom: 2rem;
+        .white-btn {
+          background-color: #fff;
+          color: #000;
+          border: 2px solid #000000;
+          &:hover {
+            color: #fff;
+            background-color: #000;
+          }
+        }
+        .yellow-btn {
+          background-color: #ffcd00;
+          color: #000;
+          &:hover {
+            color: #ffcd00;
+            background-color: #1d1d1b;
+          }
+        }
+
+        .btn-disable {
+          background-color: #b1b1b1;
+          color: #fff;
+          pointer-events: none;
+        }
+        span,
+        a {
+          line-height: 1;
+          font-weight: 700;
+          font-family: 'Roboto Bold', sans-serif;
+          display: inline-block;
+          position: relative;
+          letter-spacing: 0.01em;
+          font-size: 15px;
+          min-height: 40px;
+          background: 0;
+          margin: initial !important;
+          font-size: 18px !important;
+          font-weight: 700 !important;
+          border-radius: 16px !important;
+          padding: 11px 24px !important;
+          background-color: #b1b1b1;
+          color: #fff;
+          border: 0;
+          cursor: pointer;
+
+          pointer-events: initial;
+          margin: 0rem 1rem 0 0 !important;
+        }
+      }
+    }
+
+    .WhatsInTheBox {
+      width: 100%;
+      padding: 0 0 0 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      h3 {
+        font-family: 'Roboto', sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 0.56px;
+        color: #1d1d1b;
+        text-align: left;
+        margin-left: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .cards {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: baseline;
+
+        .card-item {
+          background-color: #fff;
+          padding: 0.5rem 0.25rem;
+          border-radius: 8px;
+          margin-top: 0.5rem;
+          margin-right: 1rem;
+
+          img {
+            width: 100%;
+            margin: 0 auto;
+          }
+        }
+      }
+    }
+  }
+}
+
+.item {
+  background: #fff;
+  position: relative;
+  margin: 0 5px;
+  width: 48%;
+  border-radius: 16px;
+  flex: 0 0 48%;
+  margin-bottom: 2rem;
+
+  .product-added {
+    position: absolute;
+    color: #000;
+    top: 9px;
+    width: 60%;
+    border-radius: 8px;
+    opacity: 1;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0.7rem;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    visibility: hidden;
+    // transform: translate(97%, 37%);
+    transition: transform 0.5s;
+
+    p {
+      font-family: 'Roboto', sans-serif;
+      text-align: left;
+      font-size: 14px;
+      font-weight: normal;
+      letter-spacing: 0px;
+      color: #1d1d1b;
+      opacity: 1;
+    }
+  }
+
+  .product-added-alert {
+    // transform: translate(0%, 37%);
+    background-color: #cceff1;
+    visibility: visible;
+    opacity: 1;
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 0.5s;
+  }
+
+  .fade-in {
+    opacity: 1;
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 0.5s;
+  }
+
+  @keyframes fadeInOpacity {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .imagebox {
+    background-color: #f3f3f3;
+    overflow: hidden;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    img {
+      width: 60%;
+    }
+  }
+
+  .specifications {
+    box-shadow: 0px 5px 20px #1d1d1b1a;
+    border-radius: 16px;
+    margin-top: -1rem;
+    // height: 45vh;
+
+    .textbox {
+      padding: 1rem 2rem;
+      border-radius: 15px;
+      background-color: #fff;
+
+      h3 {
+        font-family: 'Roboto', sans-serif;
+        font-size: 30px;
+        color: #3f3e38;
+        font-weight: medium;
+        text-align: left;
+      }
+      .pricebox {
+        display: flex;
+        align-items: center;
+
+        .price {
+          font-family: 'Roboto', sans-serif;
+          font-size: 24px;
+          letter-spacing: 0.67px;
+          color: #1d1d1b;
+        }
+        .price,
+        .compareAtPriceV2 {
+          font-family: 'Roboto', sans-serif;
+          text-align: left;
+        }
+        .compareAtPriceV2 {
+          font-size: 18px;
+          margin-left: 10px;
+          color: #939393;
+          font-weight: normal;
+          text-decoration: line-through;
+        }
+      }
+      .des {
+        text-align: left;
+        margin-top: 1rem;
+      }
+    }
+
+    .accepted-payments-heading {
+      text-align: left;
+      margin: 1rem auto;
+
+      padding: 0rem 2rem;
+      p {
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        letter-spacing: 0px;
+        color: #3f3e38;
+        font-weight: 500;
+      }
+    }
+
+    .icons {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 0rem 1.5rem;
+      .icon {
+        display: flex;
+        box-shadow: 0px 1px 8px #e8e8e7;
+        border-radius: 20px;
+        margin: 0.5rem;
+        align-items: center;
+        padding: 0.2rem 0.6rem !important;
+        padding: 0%;
+        p {
+          font-family: 'Roboto', sans-serif;
+          font-size: 16px;
+          letter-spacing: 0px;
+          color: #3f3e38;
+          font-weight: 500;
+        }
+        .imagebox {
+          background-color: transparent;
+          display: flex;
+          justify-content: center;
+          border-top-left-radius: 0px;
+          border-top-right-radius: 0px;
+          img {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .accepted-payments {
+      .icon {
+        display: flex;
+        box-shadow: 0px 0px 0px #e8e8e7;
+        border-radius: 20px;
+        margin: 0.2rem;
+        align-items: center;
+        padding: 0.5rem 0.9rem !important;
+        border: 1px solid #d1d1d1;
+        border-radius: 20px;
+        .imagebox {
+          img {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .Value_added_services {
+      margin: 1rem 0 0 0.2rem;
+      .services {
+        display: flex;
+        justify-content: space-around;
+        align-content: center;
+        position: relative;
+        p {
+          font-family: 'Roboto', sans-serif;
+          font-weight: 500;
+          color: #1d1d1b;
+          width: 100%;
+        }
+
+        img {
+          width: 90%;
+          cursor: pointer;
+          margin-left: 0.5rem;
+        }
+        .tooltips {
+          padding: 0;
+          margin: 0;
+          position: relative;
+          margin-top: -12px;
+
+          .tooltipstext {
+            box-shadow: 0px 3px 15px #00000029;
+            opacity: 1;
+            position: absolute !important;
+            z-index: 1;
+            margin-left: 1.5rem;
+            margin-top: -1.8rem;
+            text-align: left;
+            background: #353936;
+            color: #fff;
+
+            font-size: 12px;
+            line-height: 1.2;
+            width: 13.5rem;
+            border-radius: 8px;
+            padding: 5px;
+            visibility: hidden;
+
+            &:after {
+              content: '';
+              position: absolute;
+              display: block;
+              width: 0;
+              z-index: 1;
+              border-style: solid;
+              border-color: transparent #353936;
+              border-width: 6px 15px 6px 0;
+              top: 50%;
+              left: -12px;
+              margin-top: -20px;
+            }
+          }
+          .showTooltip {
+            visibility: visible;
+          }
+        }
+      }
+    }
+
+    .bottomContentbox {
+      margin: 1rem 0rem 0rem 2rem;
+      display: flex;
+      justify-content: flex-start;
+      padding-bottom: 2rem;
+      .white-btn {
+        background-color: #fff;
+        color: #000;
+        border: 2px solid #000000;
+        &:hover {
+          color: #fff;
+          background-color: #000;
+        }
+      }
+      .yellow-btn {
+        background-color: #fc0;
+        color: #000;
+        &:hover {
+          color: #fc0;
+          background-color: #000;
+        }
+      }
+
+      .btn-disable {
+        background-color: #b1b1b1;
+        color: #fff;
+        pointer-events: none;
+      }
+
+      span,
+      a {
+        line-height: 1;
+        font-weight: 700;
+        font-family: 'Roboto Bold', sans-serif;
+        display: inline-block;
+        position: relative;
+        letter-spacing: 0.01em;
+        font-size: 15px;
+        min-height: 40px;
+        background: 0;
+        margin: initial !important;
+        font-size: 18px !important;
+        font-weight: 700 !important;
+        border-radius: 16px !important;
+        padding: 11px 50px !important;
+        background-color: #b1b1b1;
+        color: #fff;
+        border: 0;
+        cursor: pointer;
+
+        pointer-events: initial;
+        margin: 0rem 1rem 0 0 !important;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+>>>>>>> Stashed changes
   .cms-react-boilerplate__container {
     width: 100%;
     max-width: 100%;
@@ -342,6 +1064,7 @@
     position: relative;
     justify-content: space-evenly;
     flex-wrap: wrap;
+<<<<<<< Updated upstream
 
     .item {
       width: 100%;
@@ -349,13 +1072,187 @@
       max-width: 100%;
       padding: 15px;
       margin-left: 0px;
+=======
+    margin-right: -15px;
+    margin-left: -15px;
 
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+      margin: 0px 0px 0rem;
+    }
+
+    p {
+      font-size: 4.5vw;
+    }
+
+    .item {
+      width: 100%;
+      flex: 0 0 100%;
+      max-width: 100%;
+      padding: 10px;
+
+      .specifications {
+        .icons {
+          padding: 0rem 0.5rem;
+
+          .icon {
+            text-align: left;
+            padding: 0.2rem 0.6rem !important;
+          }
+        }
+      }
       .product-added {
         color: #000;
         width: 44%;
         top: 3%;
         padding: 0.7rem;
         right: 4%;
+
+        p {
+          font-family: 'Roboto', sans-serif;
+          text-align: left;
+          font-size: 4vw;
+          font-weight: normal;
+          letter-spacing: 0px;
+          color: #1d1d1b;
+          opacity: 1;
+        }
+      }
+
+      .imagebox {
+        background-color: #f3f3f3;
+        overflow: hidden;
+
+        img {
+          width: 75%;
+        }
+      }
+
+      .specifications {
+        box-shadow: 0px 5px 20px #1d1d1b1a;
+        border-radius: 16px;
+        margin-top: -1rem;
+        // height: 45vh;
+
+        .textbox {
+          padding: 1rem 1rem;
+
+          h3 {
+            font-size: 8.2vw;
+          }
+          .pricebox {
+            .price {
+              font-size: 6.8vw;
+            }
+            .compareAtPriceV2 {
+              font-size: 5vw;
+            }
+          }
+        }
+
+        .accepted-payments-heading {
+          padding: 0rem 1rem;
+          p {
+            font-size: 4.8vw;
+          }
+        }
+
+        .icons {
+          padding-left: 0.5rem;
+          .icon {
+            p {
+              font-size: 4.8vw;
+              margin-left: 0rem;
+            }
+            .imagebox {
+              background-color: transparent;
+              display: flex;
+              justify-content: center;
+              img {
+                width: 100%;
+              }
+            }
+          }
+        }
+
+        .accepted-payments {
+          .icon {
+            .imagebox {
+              img {
+                width: 100%;
+              }
+            }
+          }
+        }
+
+        .Value_added_services {
+          margin: 1rem 0 0 0.2rem;
+          .services {
+            .tooltips {
+              margin-top: -0.2rem;
+
+              .tooltipstext {
+                margin-left: -7rem;
+                margin-top: -5.2rem;
+                font-size: 3.2vw;
+
+                &:after {
+                  border-width: 0px 14px 14px 0px;
+                  top: 38%;
+                  left: 104px;
+                  margin-top: 29px;
+                }
+              }
+              .showTooltip {
+                visibility: visible;
+              }
+            }
+          }
+        }
+
+        .bottomContentbox {
+          justify-content: center;
+          padding-bottom: 0;
+          width: 96%;
+          margin: 1.5rem auto;
+
+          span,
+          a {
+            font-size: 4.8vw !important;
+            padding: 0.7rem 1.5rem !important;
+            margin: 0rem 0.2rem 0 0.2rem !important;
+            width: 50%;
+          }
+        }
+      }
+    }
+
+    .item.accessories {
+      width: 100%;
+      flex: 0 0 100%;
+      max-width: 100%;
+
+      .product-added {
+        position: absolute;
+        color: #000;
+        top: 9px;
+        width: 60%;
+        border-radius: 8px;
+        opacity: 1;
+        text-align: center;
+        vertical-align: middle;
+        padding: 0.7rem;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        visibility: hidden;
+        // transform: translate(97%, 37%);
+        transition: transform 0.5s;
 
         p {
           font-family: 'Roboto', sans-serif;
@@ -367,7 +1264,222 @@
           opacity: 1;
         }
       }
+      .ProductDescription {
+        display: flex;
+        flex-direction: column-reverse;
+      }
+      .product-added-alert {
+        background-color: #cceff1;
+        visibility: visible;
+        opacity: 1;
+        animation-name: fadeInOpacity;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-in;
+        animation-duration: 0.5s;
+      }
 
+      .imagebox {
+        background-color: #fff;
+        overflow: hidden;
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+        img {
+          width: 60%;
+        }
+      }
+
+      .specifications {
+        box-shadow: 0px 0px 0px #1d1d1b00;
+        border-radius: 16px;
+        margin-top: -1rem;
+
+        .textbox {
+          padding: 1rem 0.5rem;
+
+          h3 {
+            font-size: 5.6vw;
+          }
+          .pricebox {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+            .price {
+              font-size: 6.5vw;
+            }
+            .compareAtPriceV2 {
+              font-size: 4.8vw;
+            }
+          }
+        }
+
+        .accepted-payments-heading {
+          text-align: left;
+          margin: 1rem auto;
+          padding: 0rem 2rem;
+          p {
+            font-size: 4.5vw;
+          }
+        }
+
+        .icons {
+          padding: 0rem 0rem;
+          .icon {
+            display: flex;
+            box-shadow: 0px 1px 8px #e8e8e7;
+            border-radius: 20px;
+            margin: 0.1rem;
+            align-items: center;
+            padding: 0.4rem 0.6rem !important;
+            padding: 0%;
+            background-color: #09828b;
+
+            &:first-child {
+              background-color: transparent;
+              box-shadow: 0px 0px 0px #e8e8e7;
+              p {
+                color: #3f3e38;
+                font-size: 14px;
+              }
+            }
+
+            p {
+              font-family: 'Roboto', sans-serif;
+              font-size: 12px;
+              letter-spacing: 0px;
+              color: #fff;
+              font-weight: 500;
+            }
+            .imagebox {
+              background-color: transparent;
+              display: flex;
+              justify-content: center;
+              border-top-left-radius: 0px;
+              border-top-right-radius: 0px;
+              img {
+                width: 100%;
+              }
+            }
+          }
+        }
+
+        .accepted-payments {
+          .icon {
+            display: flex;
+            box-shadow: 0px 0px 0px #e8e8e7;
+            border-radius: 20px;
+            margin: 0.2rem;
+            align-items: center;
+            padding: 0.2rem 0.6rem !important;
+            border: 1px solid #d1d1d1;
+            border-radius: 20px;
+            .imagebox {
+              img {
+                width: 100%;
+              }
+            }
+          }
+        }
+
+        .Value_added_services {
+          margin: 1rem 0 0 0.2rem;
+          .services {
+            display: flex;
+            justify-content: space-around;
+            align-content: center;
+            position: relative;
+            p {
+              font-family: 'Roboto', sans-serif;
+              font-weight: 500;
+              color: #1d1d1b;
+              width: 100%;
+            }
+
+            img {
+              width: 50%;
+              cursor: pointer;
+            }
+          }
+        }
+
+        .bottomContentbox {
+          justify-content: center;
+          padding-bottom: 0;
+          width: 96%;
+          margin: 1.5rem auto;
+          .white-btn {
+            background-color: #fff;
+            color: #000;
+            border: 2px solid #000000;
+            &:hover {
+              color: #fff;
+              background-color: #000;
+            }
+          }
+          .yellow-btn {
+            background-color: #1d1d1b;
+            color: rgb(255, 255, 255);
+            &:hover {
+              color: #1d1d1b;
+              background-color: #ffcd00;
+            }
+          }
+
+          .btn-disable {
+            background-color: #b1b1b1;
+            color: #fff;
+            pointer-events: none;
+          }
+          span,
+          a {
+            font-size: 4.8vw !important;
+            padding: 0.7rem 1.5rem !important;
+            margin: 0rem 0.2rem 0 0.2rem !important;
+            width: 50%;
+          }
+        }
+      }
+    }
+
+    .item.ikhokha-register {
+      width: 100%;
+      flex: 0 0 100%;
+      max-width: 100%;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 2rem;
+      padding: 0;
+>>>>>>> Stashed changes
+
+      .product-added {
+        position: absolute;
+        color: #000;
+        top: 9px;
+        width: 60%;
+        border-radius: 8px;
+        opacity: 1;
+        text-align: center;
+        vertical-align: middle;
+        padding: 0.7rem;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        visibility: hidden;
+        // transform: translate(97%, 37%);
+        transition: transform 0.5s;
+
+        p {
+          font-family: 'Roboto', sans-serif;
+          text-align: left;
+          font-size: 14px;
+          font-weight: normal;
+          letter-spacing: 0px;
+          color: #1d1d1b;
+          opacity: 1;
+        }
+      }
+      .ProductDescription {
+        flex-direction: column;
+      }
       .product-added-alert {
         // transform: translate(0%, 37%);
         background-color: #cceff1;
@@ -397,16 +1509,17 @@
       }
 
       .imagebox {
-        background-color: #f3f3f3;
-        border-radius: 16px;
+        background-color: transparent;
         overflow: hidden;
-
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
         img {
-          width: 60%;
+          width: 100%;
         }
       }
 
       .specifications {
+<<<<<<< Updated upstream
         box-shadow: 0px 5px 20px #1d1d1b1a;
         border-radius: 16px;
         margin-top: -1rem;
@@ -415,23 +1528,22 @@
           padding: 1rem 1rem;
           border-radius: 16px;
           background-color: #fff;
+=======
+        background-color: #fff;
+
+        .textbox {
+          padding: 1rem 1rem;
+>>>>>>> Stashed changes
 
           h3 {
             font-family: 'Roboto', sans-serif;
-            font-size: 30px;
-            color: #3f3e38;
-            font-weight: medium;
+            font-size: 14px;
+            color: #8b8b87;
             text-align: left;
           }
           .pricebox {
-            display: flex;
-            align-items: center;
-
             .price {
-              font-family: 'Roboto', sans-serif;
-              font-size: 24px;
-              letter-spacing: 0.67px;
-              color: #1d1d1b;
+              font-size: 6.8vw;
             }
             .price,
             .compareAtPriceV2 {
@@ -439,16 +1551,8 @@
               text-align: left;
             }
             .compareAtPriceV2 {
-              font-size: 18px;
-              margin-left: 10px;
-              color: #939393;
-              font-weight: normal;
-              text-decoration: line-through;
+              font-size: 5vw;
             }
-          }
-          .des {
-            text-align: left;
-            margin-top: 1rem;
           }
         }
 
@@ -458,7 +1562,7 @@
           padding: 0rem 1rem;
           p {
             font-family: 'Roboto', sans-serif;
-            font-size: 16px;
+            font-size: 4.4vw;
             letter-spacing: 0px;
             color: #3f3e38;
             font-weight: 500;
@@ -466,17 +1570,17 @@
         }
 
         .icons {
+<<<<<<< Updated upstream
           display: flex;
           flex-wrap: wrap;
           padding: 0;
           margin: 0 0.5rem;
+=======
+          padding: 0rem 0.5rem;
+>>>>>>> Stashed changes
           .icon {
-            align-items: center;
-            text-align: initial;
             p {
-              font-family: 'Roboto', sans-serif;
-              font-size: 16px;
-              letter-spacing: 0px;
+              font-size: 14px;
               color: #3f3e38;
               font-weight: 500;
             }
@@ -484,6 +1588,14 @@
               background-color: transparent;
               display: flex;
               justify-content: center;
+<<<<<<< Updated upstream
+=======
+              border-top-left-radius: 0px;
+              border-top-right-radius: 0px;
+              img {
+                width: 100%;
+              }
+>>>>>>> Stashed changes
             }
           }
         }
@@ -492,7 +1604,13 @@
           .icon {
             margin: 0.1rem;
             align-items: center;
+<<<<<<< Updated upstream
             padding: 0.3rem 0.6rem !important;
+=======
+            padding: 0.2rem 0.6rem !important;
+            border: 1px solid #d1d1d1;
+            border-radius: 20px;
+>>>>>>> Stashed changes
             .imagebox {
               img {
                 width: 100%;
@@ -515,6 +1633,7 @@
               width: 100%;
             }
 
+<<<<<<< Updated upstream
             .tooltips {
               position: relative;
               margin-top: -3px;
@@ -536,19 +1655,26 @@
                 border-radius: 8px;
                 padding: 5px;
                 visibility: hidden;
+=======
+            img {
+              width: 90%;
+              cursor: pointer;
+              margin-left: 0.5rem;
+            }
+            .tooltips {
+              margin-top: -0.2rem;
+
+              .tooltipstext {
+                margin-left: -7rem;
+                margin-top: -5.2rem;
+                font-size: 3.2vw;
+>>>>>>> Stashed changes
 
                 &:after {
-                  content: '';
-                  position: absolute;
-                  display: block;
-                  width: 0;
-                  z-index: 1;
-                  border-style: solid;
-                  border-color: transparent #353936;
-                  border-width: 6px 15px 6px 0;
-                  top: 50%;
-                  left: -12px;
-                  margin-top: -20px;
+                  border-width: 0px 14px 14px 0px;
+                  top: 38%;
+                  left: 104px;
+                  margin-top: 29px;
                 }
               }
               .showTooltip {
@@ -559,6 +1685,7 @@
         }
 
         .bottomContentbox {
+<<<<<<< Updated upstream
           width: 90%;
           text-align: center;
           display: grid;
@@ -572,6 +1699,79 @@
             border-radius: 16px !important;
             padding: 11px 20px !important;
             width: 100%;
+=======
+          justify-content: center;
+          padding-bottom: 0;
+          width: 96%;
+          margin: 1.5rem auto;
+          .white-btn {
+            background-color: #fff;
+            color: #000;
+            border: 2px solid #000000;
+            &:hover {
+              color: #fff;
+              background-color: #000;
+            }
+          }
+          .yellow-btn {
+            background-color: #ffcd00;
+            color: #000;
+            &:hover {
+              color: #ffcd00;
+              background-color: #1d1d1b;
+            }
+          }
+
+          .btn-disable {
+            background-color: #b1b1b1;
+            color: #fff;
+            pointer-events: none;
+          }
+          span,
+          a {
+            font-size: 4.8vw !important;
+            padding: 0.7rem 1.5rem !important;
+            margin: 0rem 0.2rem 0 0.2rem !important;
+          }
+        }
+      }
+
+      .WhatsInTheBox {
+        width: 100%;
+        padding: 0 0 0 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 2rem;
+
+        h3 {
+          font-family: 'Roboto', sans-serif;
+          font-size: 20px;
+          font-weight: 700;
+          letter-spacing: 0.56px;
+          color: #1d1d1b;
+          text-align: left;
+          margin-left: 1rem;
+          margin-bottom: 1rem;
+        }
+
+        .cards {
+          display: flex;
+          justify-content: space-evenly;
+          align-items: baseline;
+
+          .card-item {
+            background-color: #fff;
+            padding: 0.5rem 0.25rem;
+            border-radius: 8px;
+            margin-top: 0.5rem;
+            margin-right: 1rem;
+
+            img {
+              width: 100%;
+              margin: 0 auto;
+            }
+>>>>>>> Stashed changes
           }
         }
       }

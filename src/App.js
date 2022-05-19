@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './App.scss';
+<<<<<<< Updated upstream
 import AcceptedPaymentsHeading from './components/item/AcceptedPaymentsHeading';
 import AcceptedPaymentsIcons from './components/item/AcceptedPaymentsIcons';
 import ProductDescription from './components/item/ProductDescription';
@@ -72,8 +73,17 @@ function App({ moduleData }) {
       items: cartResponse?.lines?.edges?.map(item => createItems(item)),
     };
   };
+=======
+import ProductCard from './components/ProductCard';
+import Loading from './utils/Loading/Loading';
 
+const App = ({ moduleData }) => {
+  const [load, setload] = useState(false);
+>>>>>>> Stashed changes
+
+  console.log('load', load);
   return (
+<<<<<<< Updated upstream
     <>
       <div className="cms-react-boilerplate__container container-lg ">
         <div
@@ -173,7 +183,12 @@ function App({ moduleData }) {
       </div>
       {/* <ProductCard /> */}
     </>
+=======
+    <div>
+      {load && <ProductCard moduleData={moduleData} setloading={setload} />}
+      {/* {!load && <Loading />} */}
+    </div>
+>>>>>>> Stashed changes
   );
-}
-
+};
 export default App;

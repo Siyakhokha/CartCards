@@ -1,13 +1,22 @@
 import React from 'react';
 
-const ProductSecifications = ({ text, image, index }) => {
+const ProductSecifications = ({ secifications }) => {
   return (
-    <div className="icon" key={index}>
-      <div className="imagebox">
-        <img src={image} alt="" />
+    <>
+      <div className="icons">
+        {secifications &&
+          secifications.map((icon, index) => {
+            return (
+              <div className="icon" key={index}>
+                <div className="imagebox">
+                  <img src={icon.secification_image.src} alt="" />
+                </div>
+                <p>{icon.secifications_text}</p>
+              </div>
+            );
+          })}
       </div>
-      <p>{text}</p>
-    </div>
+    </>
   );
 };
 
