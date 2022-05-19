@@ -13,7 +13,7 @@ import productTitleCleaner from './utils/productTitleCleaner';
 import ShowProductaddedAlert from './utils/ShowProductaddedAlert';
 import { getCollectionHandle } from './utils/getCollectionHandle';
 import { AddItemToCart } from './utils/AddItemToCart';
-import { getCart } from './services/cart-service'
+import { getCart } from './services/cart-service';
 
 function App({ moduleData }) {
   const [ItemAddedText, setItemAddedText] = useState('Adding item to cart.');
@@ -24,7 +24,7 @@ function App({ moduleData }) {
   const [cart, setCart] = useState({ id: '', itemsCount: 0 });
 
   useEffect(() => {
-    window.addEventListener("storage", quantityChange);
+    window.addEventListener('storage', quantityChange);
     getCollectionHandle(setProductData, moduleData?.collection_id);
   }, []);
 
@@ -35,49 +35,49 @@ function App({ moduleData }) {
       setCart(cart);
       getCart({ cartId: cart.id })
         .then(resp => {
-          const newCartData = createCartData(resp?.data?.cart)
-          setCartData(newCartData)
+          const newCartData = createCartData(resp?.data?.cart);
+          setCartData(newCartData);
         })
         .catch(er => {
           console.log('error', er);
-        })
+        });
     } else {
-      setCartData(null)
-      setCart({ id: '', itemsCount: 0 })
+      setCartData(null);
+      setCart({ id: '', itemsCount: 0 });
     }
   }, [Reload]);
-  
+
   const quantityChange = () => {
-      setReload((prevLoad) => {
-        return !prevLoad
-      })
-  }
+    setReload(prevLoad => {
+      return !prevLoad;
+    });
+  };
 
   const getPrice = productId => {
     const product = ProductData?.find(p => p.node.handle === productId);
     return product;
   };
 
-  const createItems = (item) => {
+  const createItems = item => {
     return {
-      id: item.node.id, 
-      quantity: item.node.quantity, 
-      merchandiseId:  item.node.merchandise.id
-    }
+      id: item.node.id,
+      quantity: item.node.quantity,
+      merchandiseId: item.node.merchandise.id,
+    };
   };
 
-  const createCartData = (cartResponse) => {
-    return { 
+  const createCartData = cartResponse => {
+    return {
       id: cartResponse?.id,
-      items: cartResponse?.lines?.edges?.map(item => createItems(item))
-     }
+      items: cartResponse?.lines?.edges?.map(item => createItems(item)),
+    };
   };
 
   return (
     <>
-      <div className="cms-react-boilerplate__container ">
+      <div className="cms-react-boilerplate__container container-lg ">
         <div
-          className={`spinning-logo__container  ${moduleData?.collection_id}`}
+          className={`spinning-logo__container container  ${moduleData?.collection_id}`}
         >
           {moduleData?.product_item?.length &&
             ProductData?.length &&
@@ -87,7 +87,7 @@ function App({ moduleData }) {
               return (
                 <div
                   id={i.productid}
-                  className={`item  ${moduleData?.collection_id}`}
+                  className={`item mt-5 mb-5   ${moduleData?.collection_id}`}
                   key={index}
                 >
                   <Productadded
@@ -145,7 +145,9 @@ function App({ moduleData }) {
                       </a>
                       <a
                         href=""
-                        className={`yellow-btn ${!enableAddToCart ? "btn-disable" : ""}`}
+                        className={`yellow-btn ${
+                          !enableAddToCart ? 'btn-disable' : ''
+                        }`}
                         onClick={event => {
                           AddItemToCart(
                             event,
@@ -155,7 +157,7 @@ function App({ moduleData }) {
                             CartData,
                             setCart,
                             setItemAddedText,
-                            setEnableAddToCart
+                            setEnableAddToCart,
                           );
                           ShowProductaddedAlert(i.productid);
                         }}
