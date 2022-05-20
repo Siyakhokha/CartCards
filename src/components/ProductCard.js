@@ -5,7 +5,6 @@ import { getCollectionHandle } from '../utils/getCollectionHandle';
 import { getPrice } from '../utils/getPrice';
 import Productadded from '../utils/Productadded';
 import productTitleCleaner from '../utils/productTitleCleaner';
-import { quantityChange } from '../utils/quantityChange';
 import ShowProductaddedAlert from '../utils/ShowProductaddedAlert';
 import AcceptedPaymentsHeading from './item/AcceptedPaymentsHeading';
 import AcceptedPaymentsIcons from './item/AcceptedPaymentsIcons';
@@ -27,7 +26,7 @@ function ProductCard({ moduleData, setload, load }) {
   const [cart, setCart] = useState({ id: '', itemsCount: 0 });
 
   useEffect(() => {
-    window.addEventListener('storage', quantityChange(setReload));
+    window.addEventListener('storage', quantityChange);
     getCollectionHandle(
       setProductData,
       moduleData?.collection_id,
@@ -38,7 +37,6 @@ function ProductCard({ moduleData, setload, load }) {
 
   useEffect(() => {
     const cart = JSON.parse(localStorage.getItem('cart'));
-
     if (cart?.id) {
       setCart(cart);
       getCart({ cartId: cart.id })
@@ -54,6 +52,12 @@ function ProductCard({ moduleData, setload, load }) {
       setCart({ id: '', itemsCount: 0 });
     }
   }, [Reload]);
+
+  const quantityChange = () => {
+    setReload(prevLoad => {
+      return !prevLoad;
+    });
+  };
 
   return (
     <>
