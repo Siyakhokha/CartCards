@@ -1,5 +1,5 @@
 import axios from 'axios';
-export const getCollectionHandle = (setProductData, id, setloading) => {
+export const getCollectionHandle = (setProductData, id, setload, load) => {
   axios({
     method: 'post',
     url: `${window.location.origin}/_hcms/api/getcollectionbyhandle`,
@@ -7,8 +7,10 @@ export const getCollectionHandle = (setProductData, id, setloading) => {
   })
     .then(response => {
       setProductData(response?.data?.data?.collectionByHandle?.products?.edges);
-      if (response?.data?.data?.collectionByHandle?.products?.edges) {
-        setloading(true);
+      if (response?.data?.data) {
+        console.log(response?.data?.data?.collectionByHandle?.products?.edges);
+        console.log('load:', load);
+        setload(false);
       }
     })
     .catch(er => {

@@ -10,21 +10,23 @@ export const AddItemToCart = (
   cartData,
   setCart,
   setItemAddedText,
-  setEnableAddToCart
+  setEnableAddToCart,
 ) => {
   event.preventDefault();
   //TODO: Refactoring below
-    const localCart = JSON.parse(localStorage.getItem('cart'));
-    setEnableAddToCart(false)
+  const localCart = JSON.parse(localStorage.getItem('cart'));
+  setEnableAddToCart(false);
 
   if (cart?.id) {
-    const existingLineItem = cartData?.items?.find(item => item.merchandiseId === merchandiseId)
+    const existingLineItem = cartData?.items?.find(
+      item => item.merchandiseId === merchandiseId,
+    );
     if (localCart?.itemsCount && !!existingLineItem) {
       const payload = {
         cartId: cart.id,
         lineId: existingLineItem.id,
-        quantity: existingLineItem.quantity + 1
-      }
+        quantity: existingLineItem.quantity + 1,
+      };
       updateQuantity(payload)
         .then(response => {
           const lines = response?.data?.cartLinesUpdate?.cart?.lines?.edges;
@@ -32,15 +34,20 @@ export const AddItemToCart = (
           const newCart = lines?.length
             ? { ...cart, itemsCount: localCart.itemsCount + 1 }
             : { ...cart, itemsCount: 0 };
-            updateCartState(Id, newCart, setCart, setItemAddedText, setEnableAddToCart)
-          
+          updateCartState(
+            Id,
+            newCart,
+            setCart,
+            setItemAddedText,
+            setEnableAddToCart,
+          );
         })
         .catch(error => {
           console.log(error);
         });
-    }
-    else {
-      const latestCartQuantity = JSON.parse(localStorage.getItem('cart'))?.itemsCount || 0;
+    } else {
+      const latestCartQuantity =
+        JSON.parse(localStorage.getItem('cart'))?.itemsCount || 0;
       axios({
         method: 'post',
         url: `${window.location.origin}/_hcms/api/addlineitem`,
@@ -52,21 +59,25 @@ export const AddItemToCart = (
       })
         .then(response => {
           const responseData = response.data;
-          const lineItems = responseData?.data?.cartLinesAdd?.cart?.lines?.edges;
+          const lineItems =
+            responseData?.data?.cartLinesAdd?.cart?.lines?.edges;
 
           if (lineItems && lineItems.length > 0) {
             const newCart = {
               ...cart,
-              itemsCount: latestCartQuantity + 1
+              itemsCount: latestCartQuantity + 1,
             };
             setCart(newCart);
             localStorage.setItem('cart', JSON.stringify(newCart));
             window.dispatchEvent(new Event('storage'));
-            setEnableAddToCart(true)
-            setItemAddedText('Item added to cart');
+            setEnableAddToCart(true);
+            setTimeout(() => {
+              setItemAddedText('Item added to cart');
+            }, 2000);
+
             setTimeout(() => {
               ShowProductaddedAlert(Id);
-            }, 2000);
+            }, 4000);
           } else {
             console.log('coud not add line item');
           }
@@ -89,7 +100,7 @@ export const AddItemToCart = (
           localStorage.setItem('cart', JSON.stringify(newCart));
           window.dispatchEvent(new Event('storage'));
           setCart(newCart);
-          setEnableAddToCart(true)
+          setEnableAddToCart(true);
           setItemAddedText('Item added to cart');
           setTimeout(() => {
             ShowProductaddedAlert(Id);
@@ -104,14 +115,20 @@ export const AddItemToCart = (
   }
 };
 
-const updateCartState = (Id, newCart, setCart, setItemAddedText, setEnableAddToCart) => {
+const updateCartState = (
+  Id,
+  newCart,
+  setCart,
+  setItemAddedText,
+  setEnableAddToCart,
+) => {
   setCart(newCart);
   localStorage.setItem('cart', JSON.stringify(newCart));
   window.dispatchEvent(new Event('storage'));
-  setEnableAddToCart(true)
+  setEnableAddToCart(true);
 
   setItemAddedText('Item added to cart');
   setTimeout(() => {
     ShowProductaddedAlert(Id);
   }, 2000);
-}
+};

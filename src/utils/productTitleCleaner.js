@@ -6,11 +6,7 @@ export default function productTitleCleaner(title) {
     .replace('(box of 10)', ' ')
     .replace('Handheld', ' ')
     .replace('including Bluetooth Adapter', ' ')
-<<<<<<< Updated upstream
-    .replace('Bluetooth', ' ')
-=======
     .replace('Bluetooth ', ' ')
->>>>>>> Stashed changes
     .replace('Adapter', ' ')
     .replace('including', ' ');
 

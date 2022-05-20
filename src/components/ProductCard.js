@@ -18,7 +18,7 @@ import ProductSecifications from './item/ProductSecifications';
 import ValueAddedServices from './item/ValueAddedServices';
 import WhatsInTheBox from './item/WhatsInTheBox';
 
-function ProductCard({ moduleData, setloading }) {
+function ProductCard({ moduleData, setload, load }) {
   const [ItemAddedText, setItemAddedText] = useState('Adding item to cart.');
   const [ProductData, setProductData] = useState('');
   const [CartData, setCartData] = useState(null);
@@ -28,7 +28,12 @@ function ProductCard({ moduleData, setloading }) {
 
   useEffect(() => {
     window.addEventListener('storage', quantityChange(setReload));
-    getCollectionHandle(setProductData, moduleData?.collection_id, setloading);
+    getCollectionHandle(
+      setProductData,
+      moduleData?.collection_id,
+      setload,
+      load,
+    );
   }, []);
 
   useEffect(() => {
@@ -67,9 +72,6 @@ function ProductCard({ moduleData, setloading }) {
             ProductData?.length &&
             moduleData.product_item.map((i, index) => {
               const productItem = getPrice(i.productid, ProductData);
-              // if (productItem) {
-              //   setloading(true);
-              // }
 
               return (
                 <div
