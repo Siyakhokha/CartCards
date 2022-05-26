@@ -4,6 +4,7 @@ const AcceptedPaymentsIcons = ({ icons }) => {
   return (
     <div className="accepted-payments icons">
       {icons &&
+        icons.length > 0 &&
         icons?.map((icon, index) => {
           return (
             <div className="icon" key={index}>

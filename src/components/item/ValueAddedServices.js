@@ -5,6 +5,7 @@ const ValueAddedServices = ({ Values, Productid }) => {
   return (
     <div className="accepted-payments icons">
       {Values &&
+        Values.length > 0 &&
         Values?.map((services, H) => {
           return (
             <div className="Value_added_services" key={H}>

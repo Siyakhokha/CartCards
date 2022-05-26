@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 .cms-react-boilerplate {
   margin: 0;
   padding: 0;
@@ -46,6 +50,7 @@
   padding-left: calc(var(--bs-gutter-x) * 0.5); */
   margin-right: auto;
   margin-left: auto;
+  overflow: hidden;
 }
 
 @media (min-width: 576px) {

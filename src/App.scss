@@ -10,11 +10,18 @@
   margin: 0 auto;
   overflow: hidden;
   margin: 2rem 0;
+  overflow: hidden;
 
+  .HideItem {
+    display: none;
+  }
   .Heading {
     text-align: left;
     width: 100%;
     padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     h1 {
       font-size: 32px;
@@ -23,6 +30,74 @@
       color: #1d1d1b;
       font-weight: 500;
       margin: 2rem 0;
+    }
+
+    a {
+      font-size: 16px;
+      color: #09828b;
+      margin-right: 1rem;
+      font-weight: 500;
+
+      &:hover {
+        color: #3f3e38;
+        text-decoration: underline;
+      }
+
+      .UpArrow {
+        position: absolute;
+        top: 55%;
+        right: 20px;
+      }
+
+      .UpArrow::before {
+        transform: rotate(135deg);
+      }
+      .UpArrow::after {
+        transform: rotate(230deg);
+        left: 6px;
+        top: -1px;
+      }
+
+      .UpArrow::before,
+      .UpArrow::after {
+        position: relative;
+        content: '';
+        display: block;
+        width: 10px;
+        height: 2px;
+        background: #000;
+        transition: 0.3s ease-in-out;
+      }
+    }
+
+    .Filter {
+      display: flex;
+      align-items: baseline;
+
+      select {
+        height: 3rem;
+        background-color: #fefefe;
+        padding-left: 12px;
+        background: transparent
+          url('data:image/svg+xml,%3Csvg777779%22 xmlns=%22http://www.w3.org/2000/svg%22 width=%2235%22 height=%2235%22 viewBox=%220 0 32 16%22%3E%3Cpath d=%22M7 10l5 5 5-5z%22/%3E%3Cpath d=%22M0 0h24v24H0z%22 fill=%22none%22/%3E%3C/svg%3E')
+          100% 0% no-repeat;
+        order: 0;
+        box-shadow: none;
+        color: #8b8b87;
+        font-size: 16px;
+        font-size: 1rem;
+        font-weight: 500;
+        margin: 0;
+        padding-right: 33px;
+        position: relative;
+        border: 2px solid #1d1d1b;
+        border-radius: 16px;
+        width: 309px;
+        // height: 48px;
+        cursor: pointer;
+
+        margin-left: 1rem;
+      }
     }
   }
 }
@@ -39,6 +114,8 @@
   // margin-left: -15px;
   // margin-bottom: 2rem;
   // width: 1170px;
+
+  overflow: hidden;
   h1,
   h2,
   h3,
@@ -65,6 +142,14 @@
     max-width: 31%;
     box-shadow: 0px 5px 20px #1d1d1b1a;
     margin-bottom: 2rem;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    margin-top: 1rem;
+
+    &:hover {
+      transform: translate(0, -5px);
+      box-shadow: 0 5px 10px rgb(29 29 27 / 44%);
+    }
 
     .product-added {
       position: absolute;
@@ -139,7 +224,9 @@
       box-shadow: 0px 0px 0px #1d1d1b00;
       border-radius: 16px;
       margin-top: -1rem;
-
+      &:hover {
+        transform: translate(0, 0px);
+      }
       .textbox {
         padding: 1rem 1rem;
         border-radius: 15px;
@@ -348,9 +435,11 @@
         }
         span,
         a {
+          width: 42%;
           line-height: 1;
           font-weight: 700;
-          font-family: 'Roboto Bold', sans-serif;
+          font-family: Roboto Bold, sans-serif;
+          display: inline-block;
           position: relative;
           letter-spacing: 0.01em;
           font-size: 15px;
@@ -360,15 +449,16 @@
           font-size: 18px !important;
           font-weight: 700 !important;
           border-radius: 16px !important;
-          padding: 11px 12px !important;
+          padding: 11px 10px !important;
           background-color: #b1b1b1;
           color: #fff;
           border: 0;
           cursor: pointer;
-
-          pointer-events: initial;
           display: flex;
           align-items: center;
+          pointer-events: auto;
+          text-align: center;
+          justify-content: center;
         }
       }
     }
@@ -391,7 +481,7 @@
       position: absolute;
       color: #000;
       top: 9px;
-      width: 60%;
+      width: 30%;
       border-radius: 8px;
       opacity: 1;
       text-align: center;
@@ -425,7 +515,7 @@
       animation-name: fadeInOpacity;
       animation-iteration-count: 1;
       animation-timing-function: ease-in;
-      animation-duration: 0.5s;
+      animation-duration: 0.3s;
     }
 
     .fade-in {
@@ -433,7 +523,7 @@
       animation-name: fadeInOpacity;
       animation-iteration-count: 1;
       animation-timing-function: ease-in;
-      animation-duration: 0.5s;
+      animation-duration: 0.3s;
     }
 
     @keyframes fadeInOpacity {
@@ -458,6 +548,10 @@
     .specifications {
       background-color: #fff;
 
+      &:hover {
+        transform: translate(0, -5px);
+        box-shadow: 0 5px 10px rgb(29 29 27 / 44%);
+      }
       .textbox {
         padding: 1rem 1rem;
         border-radius: 15px;
@@ -658,9 +752,11 @@
         }
         span,
         a {
+          width: 42%;
           line-height: 1;
           font-weight: 700;
-          font-family: 'Roboto Bold', sans-serif;
+          font-family: Roboto Bold, sans-serif;
+          display: inline-block;
           position: relative;
           letter-spacing: 0.01em;
           font-size: 15px;
@@ -670,14 +766,16 @@
           font-size: 18px !important;
           font-weight: 700 !important;
           border-radius: 16px !important;
-          padding: 11px 24px !important;
+          padding: 11px 10px !important;
           background-color: #b1b1b1;
           color: #fff;
           border: 0;
           cursor: pointer;
           display: flex;
           align-items: center;
-          pointer-events: initial;
+          pointer-events: auto;
+          text-align: center;
+          justify-content: center;
         }
       }
     }
@@ -802,6 +900,12 @@
     border-radius: 16px;
     margin-top: -1rem;
     // height: 45vh;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 10px rgb(29 29 27 / 44%);
+    }
 
     .textbox {
       padding: 1rem 2rem;
@@ -841,6 +945,7 @@
       .des {
         text-align: left;
         margin-top: 1rem;
+        // min-height: 11vh;
       }
     }
 
@@ -866,7 +971,7 @@
         display: flex;
         box-shadow: 0px 1px 8px #e8e8e7;
         border-radius: 20px;
-        margin: 0.5rem;
+        margin: 0.5rem 0.2rem;
         align-items: center;
         padding: 0.2rem 0.6rem !important;
         padding: 0%;
@@ -876,6 +981,7 @@
           letter-spacing: 0px;
           color: #3f3e38;
           font-weight: 500;
+          text-align: left;
         }
         .imagebox {
           background-color: transparent;
@@ -1004,9 +1110,10 @@
 
       span,
       a {
+        width: 42%;
         line-height: 1;
         font-weight: 700;
-        font-family: 'Roboto Bold', sans-serif;
+        font-family: Roboto Bold, sans-serif;
         display: inline-block;
         position: relative;
         letter-spacing: 0.01em;
@@ -1017,20 +1124,39 @@
         font-size: 18px !important;
         font-weight: 700 !important;
         border-radius: 16px !important;
-        padding: 11px 50px !important;
+        padding: 11px 10px !important;
         background-color: #b1b1b1;
         color: #fff;
         border: 0;
         cursor: pointer;
         display: flex;
         align-items: center;
-        pointer-events: initial;
+        pointer-events: auto;
+        text-align: center;
+        justify-content: center;
       }
     }
   }
 }
 
 @media screen and (max-width: 767px) {
+  .cms-react-boilerplate__container.accessories {
+    .Heading {
+      display: grid;
+      grid-template-columns: repeat(2, 50%);
+      align-items: center;
+
+      .Filter {
+        margin-top: 0.5rem;
+        display: grid;
+        align-items: baseline;
+        grid-template-columns: 34% 60%;
+        select {
+          width: 100%;
+        }
+      }
+    }
+  }
   .cms-react-boilerplate__container {
     width: 100%;
     max-width: 100%;
@@ -1038,9 +1164,46 @@
     padding-left: 10px;
     padding-right: 10px;
 
+    .container.bottom {
+      .Heading {
+        width: 100%;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: flex-start;
+        a {
+        }
+      }
+    }
+
     .Heading {
+      text-align: left;
+      width: 100%;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
       h1 {
         font-size: 5.8vw;
+      }
+      .container.bottom h1 {
+        display: none;
+      }
+      .MobileHide {
+        display: none;
+      }
+
+      a {
+        .UpArrow {
+          position: absolute;
+          top: 15%;
+          right: 36%;
+        }
+
+        .UpArrow:after {
+          left: 5px;
+          top: -1px;
+        }
       }
     }
   }

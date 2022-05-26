@@ -28,19 +28,22 @@ const hubspotConfig = ({ portal, autoupload } = {}) => {
           },
         },
         { test: /\.css$/, loader: 'style-loader!css-loader' },
-        
+
         {
           test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-          include: path.resolve(__dirname, './node_modules/bootstrap-icons/font/fonts'),
+          include: path.resolve(
+            __dirname,
+            './node_modules/bootstrap-icons/font/fonts',
+          ),
           use: {
-              loader: 'file-loader',
-              options: {
-                  name: '[name].[ext]',
-                  outputPath: 'webfonts',
-                  publicPath: '../webfonts',
-              },
-          }
-      },
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'webfonts',
+              publicPath: '../webfonts',
+            },
+          },
+        },
         {
           test: /\.s[ac]ss$/i,
           use: [
@@ -71,7 +74,7 @@ const hubspotConfig = ({ portal, autoupload } = {}) => {
         portal,
         autoupload,
         src: 'dist',
-        dest: 'CartCards',
+        dest: 'ProductCards',
       }),
       new MiniCssExtractPlugin({
         filename: '[name].css',

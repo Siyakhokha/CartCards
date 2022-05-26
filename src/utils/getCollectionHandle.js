@@ -1,5 +1,11 @@
 import axios from 'axios';
-export const getCollectionHandle = (setProductData, id, setload, load) => {
+export const getCollectionHandle = (
+  setProductData,
+  id,
+  setload,
+  setRawProductData,
+  setOnError,
+) => {
   axios({
     method: 'post',
     url: `${window.location.origin}/_hcms/api/getcollectionbyhandle`,
@@ -7,13 +13,18 @@ export const getCollectionHandle = (setProductData, id, setload, load) => {
   })
     .then(response => {
       setProductData(response?.data?.data?.collectionByHandle?.products?.edges);
-      if (response?.data?.data) {
-        console.log(response?.data?.data?.collectionByHandle?.products?.edges);
-        console.log('load:', load);
-        setload(false);
+      setRawProductData(
+        response?.data?.data?.collectionByHandle?.products?.edges,
+      );
+      if (response?.data?.data?.collectionByHandle) {
+        setload(true);
+        setOnError(false);
+      } else {
+        setOnError(true);
       }
     })
     .catch(er => {
-      console.log('error', er);
+      setOnError(true);
+      console.log(er);
     });
 };

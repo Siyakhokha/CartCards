@@ -1,9 +1,15 @@
+import productIdCleaner from './productIdCleaner';
+
 const ShowProductaddedAlert = e => {
-  let ProductaddedAlert = document.querySelector(`#${e} .product-added`);
-  let ProductAlert = document.querySelector(
-    `#${e} .product-added.product-added-alert`,
+  let ProductaddedAlert = document.querySelector(
+    `#${productIdCleaner(e)} .product-added`,
   );
-  let addToCart = document.querySelector(`#${e} .bottomContentbox .yellow-btn`);
+  let ProductAlert = document.querySelector(
+    `#${productIdCleaner(e)} .product-added.product-added-alert`,
+  );
+  let addToCart = document.querySelector(
+    `#${productIdCleaner(e)} .bottomContentbox .yellow-btn`,
+  );
 
   if (!ProductAlert) {
     if (ProductaddedAlert) {

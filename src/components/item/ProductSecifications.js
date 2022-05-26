@@ -5,13 +5,14 @@ const ProductSecifications = ({ secifications }) => {
     <>
       <div className="icons">
         {secifications &&
-          secifications.map((icon, index) => {
+          secifications.length > 0 &&
+          secifications?.map((icon, index) => {
             return (
               <div className="icon" key={index}>
                 <div className="imagebox">
-                  <img src={icon.secification_image.src} alt="" />
+                  <img src={icon?.secification_image?.src} alt="" />
                 </div>
-                <p>{icon.secifications_text}</p>
+                <p>{icon?.secifications_text}</p>
               </div>
             );
           })}

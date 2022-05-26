@@ -69,21 +69,24 @@ export const AddItemToCart = (
             };
             setCart(newCart);
             localStorage.setItem('cart', JSON.stringify(newCart));
-            window.dispatchEvent(new Event('storage'));
+            window.dispatchEvent(new Event('quantity-updated'));
             setEnableAddToCart(true);
-            setTimeout(() => {
-              setItemAddedText('Item added to cart');
-            }, 2000);
-
+            setItemAddedText('Item added to cart');
             setTimeout(() => {
               ShowProductaddedAlert(Id);
-            }, 4000);
+            }, 1000);
           } else {
-            console.log('coud not add line item');
+            setItemAddedText('coud not add line item');
+            setTimeout(() => {
+              ShowProductaddedAlert(Id);
+            }, 1000);
           }
         })
         .catch(error => {
-          console.log(error);
+          setItemAddedText('coud not add line item');
+          setTimeout(() => {
+            ShowProductaddedAlert(Id);
+          }, 1000);
         });
     }
   } else {
@@ -98,15 +101,18 @@ export const AddItemToCart = (
         if (createdCart?.id) {
           const newCart = { id: createdCart.id, itemsCount: 1 };
           localStorage.setItem('cart', JSON.stringify(newCart));
-          window.dispatchEvent(new Event('storage'));
+          window.dispatchEvent(new Event('quantity-updated'));
           setCart(newCart);
           setEnableAddToCart(true);
           setItemAddedText('Item added to cart');
           setTimeout(() => {
             ShowProductaddedAlert(Id);
-          }, 2000);
+          }, 1000);
         } else {
-          console.log('cart not created');
+          setItemAddedText('cart not created');
+          setTimeout(() => {
+            ShowProductaddedAlert(Id);
+          }, 1000);
         }
       })
       .catch(error => {
@@ -124,11 +130,11 @@ const updateCartState = (
 ) => {
   setCart(newCart);
   localStorage.setItem('cart', JSON.stringify(newCart));
-  window.dispatchEvent(new Event('storage'));
+  window.dispatchEvent(new Event('quantity-updated'));
   setEnableAddToCart(true);
 
   setItemAddedText('Item added to cart');
   setTimeout(() => {
     ShowProductaddedAlert(Id);
-  }, 2000);
+  }, 1000);
 };

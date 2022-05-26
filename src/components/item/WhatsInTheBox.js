@@ -5,6 +5,7 @@ const WhatsInTheBox = ({ Item, Heading }) => {
     <div className="WhatsInTheBox">
       {Heading && <h3>{Heading}</h3>}
       {Item &&
+        Item.length > 0 &&
         Item?.map((i, H) => {
           return (
             <div className="cards" key={H}>
