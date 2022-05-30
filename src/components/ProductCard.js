@@ -26,7 +26,6 @@ const ProductCard = ({ moduleData }) => {
   const [ProductData, setProductData] = useState('');
   const [RawProductData, setRawProductData] = useState('');
   const [CartData, setCartData] = useState(null);
-  const [Reload, setReload] = useState(false);
   const [enableAddToCart, setEnableAddToCart] = useState(true);
   const [cart, setCart] = useState({
     id: '',
@@ -35,8 +34,10 @@ const ProductCard = ({ moduleData }) => {
   const [load, setload] = useState(false);
   const [OnError, setOnError] = useState(false);
 
+
   useEffect(() => {
-    window.addEventListener('quantity-updated', quantityChange);
+    window?.addEventListener("cart-items", updateCartItems);
+
     getCollectionHandle(
       setProductData,
       moduleData?.collection_id,
@@ -45,35 +46,11 @@ const ProductCard = ({ moduleData }) => {
       setOnError,
     );
   }, []);
-
-  useEffect(() => {
-    const cart = JSON.parse(localStorage.getItem('cart'));
-    if (cart?.id) {
-      setCart(cart);
-      getCart({ cartId: cart.id })
-        .then(resp => {
-          const newCartData = createCartData(resp?.data?.cart);
-          setCartData(newCartData);
-
-          console.log('new Cart Data:', newCartData);
-        })
-        .catch(er => {
-          console.log('error', er);
-        });
-    } else {
-      setCartData(null);
-      setCart({
-        id: '',
-        itemsCount: 0,
-      });
-    }
-  }, [Reload]);
-
-  const quantityChange = () => {
-    setReload(prevLoad => {
-      return !prevLoad;
-    });
-  };
+  
+  const updateCartItems = (event) => {
+    console.log('cccccc', event.detail?.items)
+    setCartData(event.detail)
+  }
 
   return (
     <>
@@ -170,7 +147,7 @@ const ProductCard = ({ moduleData }) => {
                           productItem?.node?.variants?.edges[0]?.node?.id
                         }
                         cart={cart}
-                        CartData={CartData}
+                        cartItems={CartData?.items}
                         setCart={setCart}
                         setItemAddedText={setItemAddedText}
                         setEnableAddToCart={setEnableAddToCart}

@@ -18586,10 +18586,14 @@ var es_regexp_exec = __webpack_require__(69);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.regexp.test.js
 var es_regexp_test = __webpack_require__(204);
 
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
+var es_array_concat = __webpack_require__(246);
+
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.promise.js
 var es_promise = __webpack_require__(196);
 
 // CONCATENATED MODULE: ./src/services/cart-service.js
+
 
 
 
@@ -18659,6 +18663,43 @@ var updateQuantity = /*#__PURE__*/function () {
 
   return function updateQuantity(_x2) {
     return _ref2.apply(this, arguments);
+  };
+}();
+var createCart = function createCart(payload) {
+  return sendRequest('createcart', payload);
+};
+var addLineItem = function addLineItem(payload) {
+  return sendRequest('addlineitem', payload);
+};
+
+var sendRequest = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(path, payload) {
+    var response;
+    return regeneratorRuntime.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.next = 2;
+            return axios({
+              method: 'post',
+              url: "".concat(baseUrl, "/").concat(path),
+              data: payload
+            });
+
+          case 2:
+            response = _context3.sent;
+            return _context3.abrupt("return", response.data);
+
+          case 4:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3);
+  }));
+
+  return function sendRequest(_x3, _x4) {
+    return _ref3.apply(this, arguments);
   };
 }();
 // CONCATENATED MODULE: ./src/utils/createItems.js
@@ -18873,7 +18914,7 @@ var es_object_get_own_property_descriptors = __webpack_require__(190);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.define-properties.js
 var es_object_define_properties = __webpack_require__(187);
 
-// CONCATENATED MODULE: ./src/utils/AddItemToCart.js
+// CONCATENATED MODULE: ./src/components/item/ButtonContainer.js
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -18892,134 +18933,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
-
-var AddItemToCart_AddItemToCart = function AddItemToCart(event, merchandiseId, Id, cart, cartData, setCart, setItemAddedText, setEnableAddToCart) {
-  event.preventDefault(); //TODO: Refactoring below
-
-  var localCart = JSON.parse(localStorage.getItem('cart'));
-  setEnableAddToCart(false);
-
-  if (cart !== null && cart !== void 0 && cart.id) {
-    var _cartData$items;
-
-    var existingLineItem = cartData === null || cartData === void 0 ? void 0 : (_cartData$items = cartData.items) === null || _cartData$items === void 0 ? void 0 : _cartData$items.find(function (item) {
-      return item.merchandiseId === merchandiseId;
-    });
-
-    if (localCart !== null && localCart !== void 0 && localCart.itemsCount && !!existingLineItem) {
-      var payload = {
-        cartId: cart.id,
-        lineId: existingLineItem.id,
-        quantity: existingLineItem.quantity + 1
-      };
-      updateQuantity(payload).then(function (response) {
-        var _response$data, _response$data$cartLi, _response$data$cartLi2, _response$data$cartLi3;
-
-        var lines = response === null || response === void 0 ? void 0 : (_response$data = response.data) === null || _response$data === void 0 ? void 0 : (_response$data$cartLi = _response$data.cartLinesUpdate) === null || _response$data$cartLi === void 0 ? void 0 : (_response$data$cartLi2 = _response$data$cartLi.cart) === null || _response$data$cartLi2 === void 0 ? void 0 : (_response$data$cartLi3 = _response$data$cartLi2.lines) === null || _response$data$cartLi3 === void 0 ? void 0 : _response$data$cartLi3.edges;
-        var newCart = lines !== null && lines !== void 0 && lines.length ? _objectSpread(_objectSpread({}, cart), {}, {
-          itemsCount: localCart.itemsCount + 1
-        }) : _objectSpread(_objectSpread({}, cart), {}, {
-          itemsCount: 0
-        });
-        AddItemToCart_updateCartState(Id, newCart, setCart, setItemAddedText, setEnableAddToCart);
-      }).catch(function (error) {
-        console.log(error);
-      });
-    } else {
-      var _JSON$parse;
-
-      var latestCartQuantity = ((_JSON$parse = JSON.parse(localStorage.getItem('cart'))) === null || _JSON$parse === void 0 ? void 0 : _JSON$parse.itemsCount) || 0;
-      axios_default()({
-        method: 'post',
-        url: "".concat(window.location.origin, "/_hcms/api/addlineitem"),
-        data: {
-          cartId: cart.id,
-          merchandiseId: merchandiseId,
-          quantity: 1
-        }
-      }).then(function (response) {
-        var _responseData$data, _responseData$data$ca, _responseData$data$ca2, _responseData$data$ca3;
-
-        var responseData = response.data;
-        var lineItems = responseData === null || responseData === void 0 ? void 0 : (_responseData$data = responseData.data) === null || _responseData$data === void 0 ? void 0 : (_responseData$data$ca = _responseData$data.cartLinesAdd) === null || _responseData$data$ca === void 0 ? void 0 : (_responseData$data$ca2 = _responseData$data$ca.cart) === null || _responseData$data$ca2 === void 0 ? void 0 : (_responseData$data$ca3 = _responseData$data$ca2.lines) === null || _responseData$data$ca3 === void 0 ? void 0 : _responseData$data$ca3.edges;
-
-        if (lineItems && lineItems.length > 0) {
-          var newCart = _objectSpread(_objectSpread({}, cart), {}, {
-            itemsCount: latestCartQuantity + 1
-          });
-
-          setCart(newCart);
-          localStorage.setItem('cart', JSON.stringify(newCart));
-          window.dispatchEvent(new Event('quantity-updated'));
-          setEnableAddToCart(true);
-          setItemAddedText('Item added to cart');
-          setTimeout(function () {
-            utils_ShowProductaddedAlert(Id);
-          }, 1000);
-        } else {
-          setItemAddedText('coud not add line item');
-          setTimeout(function () {
-            utils_ShowProductaddedAlert(Id);
-          }, 1000);
-        }
-      }).catch(function (error) {
-        setItemAddedText('coud not add line item');
-        setTimeout(function () {
-          utils_ShowProductaddedAlert(Id);
-        }, 1000);
-      });
-    }
-  } else {
-    axios_default()({
-      method: 'post',
-      url: "".concat(window.location.origin, "/_hcms/api/createcart"),
-      data: {
-        merchandiseId: merchandiseId,
-        quantity: 1
-      }
-    }).then(function (response) {
-      var _responseData$data2, _responseData$data2$c;
-
-      var responseData = response.data;
-      var createdCart = responseData === null || responseData === void 0 ? void 0 : (_responseData$data2 = responseData.data) === null || _responseData$data2 === void 0 ? void 0 : (_responseData$data2$c = _responseData$data2.cartCreate) === null || _responseData$data2$c === void 0 ? void 0 : _responseData$data2$c.cart;
-
-      if (createdCart !== null && createdCart !== void 0 && createdCart.id) {
-        var newCart = {
-          id: createdCart.id,
-          itemsCount: 1
-        };
-        localStorage.setItem('cart', JSON.stringify(newCart));
-        window.dispatchEvent(new Event('quantity-updated'));
-        setCart(newCart);
-        setEnableAddToCart(true);
-        setItemAddedText('Item added to cart');
-        setTimeout(function () {
-          utils_ShowProductaddedAlert(Id);
-        }, 1000);
-      } else {
-        setItemAddedText('cart not created');
-        setTimeout(function () {
-          utils_ShowProductaddedAlert(Id);
-        }, 1000);
-      }
-    }).catch(function (error) {
-      console.log(error);
-    });
-  }
-};
-
-var AddItemToCart_updateCartState = function updateCartState(Id, newCart, setCart, setItemAddedText, setEnableAddToCart) {
-  setCart(newCart);
-  localStorage.setItem('cart', JSON.stringify(newCart));
-  window.dispatchEvent(new Event('quantity-updated'));
-  setEnableAddToCart(true);
-  setItemAddedText('Item added to cart');
-  setTimeout(function () {
-    utils_ShowProductaddedAlert(Id);
-  }, 1000);
-};
-// CONCATENATED MODULE: ./src/components/item/ButtonContainer.js
+ // import ShowProductaddedAlert from '../../utils/ShowProductaddedAlert';
 
 
 
@@ -19028,11 +18942,152 @@ var ButtonContainer_ButtonContainer = function ButtonContainer(_ref) {
       enableAddToCart = _ref.enableAddToCart,
       variantID = _ref.variantID,
       cart = _ref.cart,
-      CartData = _ref.CartData,
+      cartItems = _ref.cartItems,
       setCart = _ref.setCart,
       setItemAddedText = _ref.setItemAddedText,
       setEnableAddToCart = _ref.setEnableAddToCart,
       ShowProductaddedAlert = _ref.ShowProductaddedAlert;
+
+  var cartHasItems = function cartHasItems(localCart) {
+    return !!(localCart !== null && localCart !== void 0 && localCart.id) && (localCart === null || localCart === void 0 ? void 0 : localCart.itemsCount) > 0;
+  };
+
+  var getLocalCart = function getLocalCart() {
+    return JSON.parse(localStorage.getItem('cart'));
+  };
+
+  var AddItemToCart = function AddItemToCart(event) {
+    event.preventDefault();
+    var localCart = JSON.parse(localStorage.getItem('cart'));
+    setEnableAddToCart(false);
+
+    if (cartHasItems(localCart)) {
+      updateItems();
+    } else {
+      createNewCart();
+    }
+  };
+
+  var updateItems = function updateItems() {
+    var existingItem = cartItems === null || cartItems === void 0 ? void 0 : cartItems.find(function (item) {
+      var _item$merchandise;
+
+      return ((_item$merchandise = item.merchandise) === null || _item$merchandise === void 0 ? void 0 : _item$merchandise.id) === variantID;
+    });
+
+    if (!!existingItem) {
+      updateItemQuantity(existingItem);
+    } else {
+      addNewLineItem();
+    }
+  };
+
+  var addNewLineItem = function addNewLineItem() {
+    console.log("addNewLineItem:", cart.id);
+    var latestCart = getLocalCart();
+    addLineItem({
+      cartId: latestCart.id,
+      merchandiseId: variantID,
+      quantity: 1
+    }).then(function (response) {
+      var _response$data, _response$data$cartLi;
+
+      var errors = response === null || response === void 0 ? void 0 : (_response$data = response.data) === null || _response$data === void 0 ? void 0 : (_response$data$cartLi = _response$data.cartLinesAdd) === null || _response$data$cartLi === void 0 ? void 0 : _response$data$cartLi.userErrors;
+
+      if (errors && errors.length > 0) {
+        handleErrorState('AddNewLine', errors);
+      } else {
+        var latestCartQuantity = (latestCart === null || latestCart === void 0 ? void 0 : latestCart.itemsCount) || 0;
+
+        var newCart = _objectSpread(_objectSpread({}, latestCart), {}, {
+          itemsCount: latestCartQuantity + 1
+        });
+
+        updateCartState(newCart);
+      }
+    }).catch(function (error) {
+      handleErrorState('AddNewLine', error);
+    });
+  };
+
+  var updateItemQuantity = function updateItemQuantity(existingLineItem) {
+    console.log("updateItemQuantity:", cart.id);
+    var localCart = getLocalCart();
+    var payload = {
+      cartId: localCart.id,
+      lineId: existingLineItem.id,
+      quantity: existingLineItem.quantity + 1
+    };
+    updateQuantity(payload).then(function (response) {
+      var _response$data2, _response$data2$cartL;
+
+      var errors = response === null || response === void 0 ? void 0 : (_response$data2 = response.data) === null || _response$data2 === void 0 ? void 0 : (_response$data2$cartL = _response$data2.cartLinesUpdate) === null || _response$data2$cartL === void 0 ? void 0 : _response$data2$cartL.userErrors;
+
+      if (errors && errors.length > 0) {
+        handleErrorState('UpdateQuantity', errors);
+      } else {
+        var _response$data3, _response$data3$cartL, _response$data3$cartL2, _response$data3$cartL3;
+
+        var localItemsCout = (localCart === null || localCart === void 0 ? void 0 : localCart.itemsCount) || 0;
+        var lines = response === null || response === void 0 ? void 0 : (_response$data3 = response.data) === null || _response$data3 === void 0 ? void 0 : (_response$data3$cartL = _response$data3.cartLinesUpdate) === null || _response$data3$cartL === void 0 ? void 0 : (_response$data3$cartL2 = _response$data3$cartL.cart) === null || _response$data3$cartL2 === void 0 ? void 0 : (_response$data3$cartL3 = _response$data3$cartL2.lines) === null || _response$data3$cartL3 === void 0 ? void 0 : _response$data3$cartL3.edges;
+        var newCart = lines !== null && lines !== void 0 && lines.length ? _objectSpread(_objectSpread({}, localCart), {}, {
+          itemsCount: localItemsCout + 1
+        }) : _objectSpread(_objectSpread({}, localCart), {}, {
+          itemsCount: 0
+        });
+        updateCartState(newCart);
+      }
+    }).catch(function (error) {
+      handleErrorState('UpdateQuantity', error);
+    });
+  };
+
+  var createNewCart = function createNewCart() {
+    console.log("createNewCart:");
+    createCart({
+      merchandiseId: variantID,
+      quantity: 1
+    }).then(function (response) {
+      var _response$data4, _response$data4$cartC;
+
+      var errors = response === null || response === void 0 ? void 0 : (_response$data4 = response.data) === null || _response$data4 === void 0 ? void 0 : (_response$data4$cartC = _response$data4.cartCreate) === null || _response$data4$cartC === void 0 ? void 0 : _response$data4$cartC.userErrors;
+
+      if (errors && errors.length > 0) {
+        handleErrorState('CreateCart', errors);
+      } else {
+        var _response$data5, _response$data5$cartC;
+
+        var createdCart = response === null || response === void 0 ? void 0 : (_response$data5 = response.data) === null || _response$data5 === void 0 ? void 0 : (_response$data5$cartC = _response$data5.cartCreate) === null || _response$data5$cartC === void 0 ? void 0 : _response$data5$cartC.cart;
+        var newCart = {
+          id: createdCart === null || createdCart === void 0 ? void 0 : createdCart.id,
+          itemsCount: 1
+        };
+        updateCartState(newCart);
+      }
+    }).catch(function (error) {
+      handleErrorState('CreateCart', error);
+    });
+  };
+
+  var updateCartState = function updateCartState(newCart) {
+    setCart(newCart);
+    localStorage.setItem('cart', JSON.stringify(newCart));
+    window.dispatchEvent(new Event('quantity-updated'));
+    setEnableAddToCart(true);
+    setItemAddedText('Item added to cart');
+    setTimeout(function () {
+      ShowProductaddedAlert(id);
+    }, 1000);
+  };
+
+  var handleErrorState = function handleErrorState(location, error) {
+    console.log("Error: ".concat(location, " ").concat(error));
+    setItemAddedText('Could not add item');
+    setTimeout(function () {
+      ShowProductaddedAlert(id);
+    }, 1000);
+  };
+
   return /*#__PURE__*/react_default.a.createElement("div", null, /*#__PURE__*/react_default.a.createElement("div", {
     className: "bottomContentbox"
   }, /*#__PURE__*/react_default.a.createElement("a", {
@@ -19042,7 +19097,7 @@ var ButtonContainer_ButtonContainer = function ButtonContainer(_ref) {
     href: "",
     className: "yellow-btn ".concat(!enableAddToCart ? 'btn-disable' : ''),
     onClick: function onClick(event) {
-      AddItemToCart_AddItemToCart(event, variantID, id, cart, CartData, setCart, setItemAddedText, setEnableAddToCart);
+      AddItemToCart(event);
       ShowProductaddedAlert(id);
     }
   }, "Add to cart")));
@@ -19358,67 +19413,41 @@ var ProductCard_ProductCard = function ProductCard(_ref) {
       CartData = _useState8[0],
       setCartData = _useState8[1];
 
-  var _useState9 = Object(react["useState"])(false),
+  var _useState9 = Object(react["useState"])(true),
       _useState10 = _slicedToArray(_useState9, 2),
-      Reload = _useState10[0],
-      setReload = _useState10[1];
+      enableAddToCart = _useState10[0],
+      setEnableAddToCart = _useState10[1];
 
-  var _useState11 = Object(react["useState"])(true),
-      _useState12 = _slicedToArray(_useState11, 2),
-      enableAddToCart = _useState12[0],
-      setEnableAddToCart = _useState12[1];
-
-  var _useState13 = Object(react["useState"])({
+  var _useState11 = Object(react["useState"])({
     id: '',
     itemsCount: 0
   }),
+      _useState12 = _slicedToArray(_useState11, 2),
+      cart = _useState12[0],
+      setCart = _useState12[1];
+
+  var _useState13 = Object(react["useState"])(false),
       _useState14 = _slicedToArray(_useState13, 2),
-      cart = _useState14[0],
-      setCart = _useState14[1];
+      load = _useState14[0],
+      setload = _useState14[1];
 
   var _useState15 = Object(react["useState"])(false),
       _useState16 = _slicedToArray(_useState15, 2),
-      load = _useState16[0],
-      setload = _useState16[1];
-
-  var _useState17 = Object(react["useState"])(false),
-      _useState18 = _slicedToArray(_useState17, 2),
-      OnError = _useState18[0],
-      setOnError = _useState18[1];
+      OnError = _useState16[0],
+      setOnError = _useState16[1];
 
   Object(react["useEffect"])(function () {
-    window.addEventListener('quantity-updated', quantityChange);
+    var _window;
+
+    (_window = window) === null || _window === void 0 ? void 0 : _window.addEventListener("cart-items", updateCartItems);
     getCollectionHandle_getCollectionHandle(setProductData, moduleData === null || moduleData === void 0 ? void 0 : moduleData.collection_id, setload, setRawProductData, setOnError);
   }, []);
-  Object(react["useEffect"])(function () {
-    var cart = JSON.parse(localStorage.getItem('cart'));
 
-    if (cart !== null && cart !== void 0 && cart.id) {
-      setCart(cart);
-      getCart({
-        cartId: cart.id
-      }).then(function (resp) {
-        var _resp$data;
+  var updateCartItems = function updateCartItems(event) {
+    var _event$detail;
 
-        var newCartData = createCartData_createCartData(resp === null || resp === void 0 ? void 0 : (_resp$data = resp.data) === null || _resp$data === void 0 ? void 0 : _resp$data.cart);
-        setCartData(newCartData);
-        console.log('new Cart Data:', newCartData);
-      }).catch(function (er) {
-        console.log('error', er);
-      });
-    } else {
-      setCartData(null);
-      setCart({
-        id: '',
-        itemsCount: 0
-      });
-    }
-  }, [Reload]);
-
-  var quantityChange = function quantityChange() {
-    setReload(function (prevLoad) {
-      return !prevLoad;
-    });
+    console.log('cccccc', (_event$detail = event.detail) === null || _event$detail === void 0 ? void 0 : _event$detail.items);
+    setCartData(event.detail);
   };
 
   return /*#__PURE__*/react_default.a.createElement(react_default.a.Fragment, null, load && !OnError && /*#__PURE__*/react_default.a.createElement("div", {
@@ -19478,7 +19507,7 @@ var ProductCard_ProductCard = function ProductCard(_ref) {
       enableAddToCart: enableAddToCart,
       variantID: productItem === null || productItem === void 0 ? void 0 : (_productItem$node7 = productItem.node) === null || _productItem$node7 === void 0 ? void 0 : (_productItem$node7$va = _productItem$node7.variants) === null || _productItem$node7$va === void 0 ? void 0 : (_productItem$node7$va2 = _productItem$node7$va.edges[0]) === null || _productItem$node7$va2 === void 0 ? void 0 : (_productItem$node7$va3 = _productItem$node7$va2.node) === null || _productItem$node7$va3 === void 0 ? void 0 : _productItem$node7$va3.id,
       cart: cart,
-      CartData: CartData,
+      cartItems: CartData === null || CartData === void 0 ? void 0 : CartData.items,
       setCart: setCart,
       setItemAddedText: setItemAddedText,
       setEnableAddToCart: setEnableAddToCart,

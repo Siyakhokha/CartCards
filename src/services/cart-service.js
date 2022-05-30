@@ -18,3 +18,20 @@ export const updateQuantity = async (payload) => {
       })
     return response.data;
 }
+
+export const createCart = (payload) => {
+  return sendRequest('createcart', payload)
+}
+
+export const addLineItem = (payload) => {
+  return sendRequest('addlineitem', payload)
+}
+
+const sendRequest = async (path, payload) => {
+const response = await axios({
+    method: 'post',
+    url: `${baseUrl}/${path}`,
+    data: payload
+  })
+return response.data;
+}
