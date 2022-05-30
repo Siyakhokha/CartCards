@@ -45,8 +45,6 @@ const ButtonContainer = ({
   }
 
   const addNewLineItem = () => {
-    console.log(`addNewLineItem:`, cart.id);
-
     const latestCart = getLocalCart()
     addLineItem({ cartId: latestCart.id, merchandiseId: variantID, quantity: 1 })
       .then(response => {
@@ -68,8 +66,6 @@ const ButtonContainer = ({
   }
 
   const updateItemQuantity = (existingLineItem) => {
-    console.log(`updateItemQuantity:`, cart.id);
-
     const localCart = getLocalCart()
     const payload = {
       cartId: localCart.id,
@@ -96,8 +92,6 @@ const ButtonContainer = ({
   }
 
   const createNewCart = () => {
-    console.log(`createNewCart:`);
-
     createCart({ merchandiseId: variantID, quantity: 1 })
       .then(response => {
         const errors = response?.data?.cartCreate?.userErrors;
