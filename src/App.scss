@@ -1220,17 +1220,18 @@
 @media screen and (max-width: 767px) {
   .cms-react-boilerplate__container.accessories {
     .Heading {
-      display: grid;
-      grid-template-columns: repeat(2, 50%);
-      align-items: center;
+      display: flex;
+      flex-direction: column;
 
       .Filter {
         margin-top: 0.5rem;
         display: grid;
         align-items: baseline;
-        grid-template-columns: 34% 60%;
+        grid-template-columns: 20% 80%;
+        width: 100%;
         select {
           width: 100%;
+          margin: 0;
         }
       }
     }
@@ -1248,8 +1249,16 @@
         display: flex;
         text-align: center;
         justify-content: center;
-        align-items: flex-start;
+        align-items: center;
+        margin-bottom: 4rem;
+
+        h1 {
+          display: none;
+        }
         a {
+          .UpArrow {
+            right: 38%;
+          }
         }
       }
     }
@@ -1279,7 +1288,7 @@
         }
 
         .UpArrow:after {
-          left: 5px;
+          left: 6px;
           top: -1px;
         }
       }
