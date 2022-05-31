@@ -48,7 +48,6 @@ const ProductCard = ({ moduleData }) => {
   }, []);
   
   const updateCartItems = (event) => {
-    console.log('cccccc', event.detail?.items)
     setCartData(event.detail)
   }
 

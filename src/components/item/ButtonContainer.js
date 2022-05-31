@@ -12,39 +12,74 @@ const ButtonContainer = ({
   setItemAddedText,
   setEnableAddToCart,
   ShowProductaddedAlert,
-}) => { 
-
-  const cartHasItems = (localCart) => {
-    return !!localCart?.id && localCart?.itemsCount > 0;
-  }
+}) => {
 
   const getLocalCart = () => {
     return JSON.parse(localStorage.getItem('cart'))
   }
+  
+  const hideLoader = (id) => {
+    const loaderContainer = document.getElementById(`loader_${id}`)
+    loaderContainer.classList?.remove('shown-loader')
+  }
 
-  const AddItemToCart = (event) => {
+  const showLoader = (id) => {
+    const loaderContainer = document.getElementById(`loader_${id}`)
+    loaderContainer.classList?.add('shown-loader')
+  }
+
+  const hideButtonText = (id) => {
+    const textContainer = document.getElementById(`product_${id}`)
+    textContainer.classList?.add('hidden-button-text')
+  }
+
+  const updateButtonText = (id) => {
+    const textContainer = document.getElementById(`product_${id}`)
+    textContainer.innerHTML = 'Added to cart'
+    textContainer.classList?.remove('hidden-button-text')
+  }
+
+  const updateButtonContent = (id) => {
+    hideLoader(id)
+    updateButtonText(id)
+    const textContainer = document.getElementById(`product_${id}`)
+    textContainer.parentElement?.classList?.add('added-to-cart')
+
+    setTimeout(() => {
+      textContainer.innerHTML = 'Add to cart'
+      textContainer.parentElement?.classList?.remove('added-to-cart')
+      setEnableAddToCart(true);
+    }, 3000);
+  }
+  
+  const setProcessingState = (id) => {
+    setEnableAddToCart(false)
+    showLoader(id)
+    hideButtonText(id)
+  }
+  
+  const AddItemToCart = (event, id) => {
     event.preventDefault();
+    setProcessingState(id)
     
     const localCart = JSON.parse(localStorage.getItem('cart'));
-    setEnableAddToCart(false);
-    
-    if (cartHasItems(localCart)) {
-      updateItems()
+    if (!!localCart?.id) {
+      updateItems(localCart, id)
     } else {
-      createNewCart()
+      createNewCart(id)
     }
   }
 
-  const updateItems = () => {
+  const updateItems = (localCart, id) => {
     const existingItem = cartItems?.find(item => item.merchandise?.id === variantID)
-    if (!!existingItem) {
-      updateItemQuantity(existingItem)
+    if (localCart.itemsCount > 0 && !!existingItem) {
+      updateItemQuantity(existingItem, id)
     } else {
-      addNewLineItem()
+      addNewLineItem(id)
     }
   }
 
-  const addNewLineItem = () => {
+  const addNewLineItem = (id) => {
     const latestCart = getLocalCart()
     addLineItem({ cartId: latestCart.id, merchandiseId: variantID, quantity: 1 })
       .then(response => {
@@ -57,7 +92,7 @@ const ButtonContainer = ({
             ...latestCart,
             itemsCount: latestCartQuantity + 1,
           };
-          updateCartState(newCart);
+          updateCartState(newCart, id);
         }
       })
       .catch((error) => {
@@ -65,7 +100,7 @@ const ButtonContainer = ({
       });
   }
 
-  const updateItemQuantity = (existingLineItem) => {
+  const updateItemQuantity = (existingLineItem, id) => {
     const localCart = getLocalCart()
     const payload = {
       cartId: localCart.id,
@@ -83,7 +118,7 @@ const ButtonContainer = ({
           const newCart = lines?.length
             ? { ...localCart, itemsCount: localItemsCout + 1 }
             : { ...localCart, itemsCount: 0 };
-          updateCartState(newCart);
+          updateCartState(newCart, id);
         }
       })
       .catch(error => {
@@ -91,7 +126,7 @@ const ButtonContainer = ({
       });
   }
 
-  const createNewCart = () => {
+  const createNewCart = (id) => {
     createCart({ merchandiseId: variantID, quantity: 1 })
       .then(response => {
         const errors = response?.data?.cartCreate?.userErrors;
@@ -100,7 +135,7 @@ const ButtonContainer = ({
         } else {
           const createdCart = response?.data?.cartCreate?.cart;
           const newCart = { id: createdCart?.id, itemsCount: 1 };
-          updateCartState(newCart);
+          updateCartState(newCart, id);
         }
       })
       .catch(error => {
@@ -108,16 +143,11 @@ const ButtonContainer = ({
       });
   }
 
-  const updateCartState = (newCart) => {
+  const updateCartState = (newCart, id) => {
     setCart(newCart);
     localStorage.setItem('cart', JSON.stringify(newCart));
     window.dispatchEvent(new Event('quantity-updated'));
-    setEnableAddToCart(true);
-
-    setItemAddedText('Item added to cart');
-    setTimeout(() => {
-      ShowProductaddedAlert(id);
-    }, 1000);
+    updateButtonContent(id)
   };
 
   const handleErrorState = (location, error) => {
@@ -138,11 +168,15 @@ const ButtonContainer = ({
           href=""
           className={`yellow-btn ${!enableAddToCart ? 'btn-disable' : ''}`}
           onClick={event => {
-            AddItemToCart(event);
-            ShowProductaddedAlert(id);
+            AddItemToCart(event, id);
+           // ShowProductaddedAlert(id);
           }}
         >
-          Add to cart
+          <div id={`product_${id}`}>Add to Cart</div>
+                <div id={`loader_${id}`} className="add-to-cart-loader">
+                  <div className="product-loader">
+                  </div>
+                </div>
         </a>
       </div>
     </div>
