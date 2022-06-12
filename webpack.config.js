@@ -71,7 +71,11 @@ const hubspotConfig = ({ portal, autoupload } = {}) => {
         portal,
         autoupload,
         src: 'dist',
+<<<<<<< Updated upstream
         dest: 'CartCards',
+=======
+        dest: 'CartCardsV2',
+>>>>>>> Stashed changes
       }),
       new MiniCssExtractPlugin({
         filename: '[name].css',

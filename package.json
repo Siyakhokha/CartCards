@@ -45,6 +45,7 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-paginate": "^8.0.3",
+    "react-responsive-modal": "^6.2.0",
     "react-select": "^5.2.1",
     "react-slick": "^0.28.1",
     "react-svg-star-rating": "^2.1.1",

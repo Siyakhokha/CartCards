@@ -9,8 +9,140 @@
   width: 1170px;
   max-width: 100%;
   margin: 0 auto;
+<<<<<<< Updated upstream
 
   overflow: hidden;
+=======
+  overflow: hidden;
+  margin: 0rem 0;
+  overflow: hidden;
+
+  .HideItem {
+    display: none;
+  }
+  .Heading {
+    text-align: left;
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+      font-size: 32px;
+      font-family: 'Roboto', sans-serif;
+
+      color: #1d1d1b;
+      font-weight: 500;
+      margin: 2rem 0;
+    }
+
+    a {
+      font-size: 16px;
+      color: #09828b;
+      margin-right: 1rem;
+      font-weight: 500;
+      position: relative;
+
+      &:hover {
+        color: #3f3e38;
+        text-decoration: underline;
+      }
+
+      .UpArrow {
+        position: absolute;
+        top: 55%;
+        left: 105%;
+      }
+
+      .UpArrow::before {
+        transform: rotate(135deg);
+      }
+      .UpArrow::after {
+        transform: rotate(230deg);
+        left: 5.5px;
+        top: -1px;
+      }
+
+      .UpArrow::before,
+      .UpArrow::after {
+        position: relative;
+        content: '';
+        display: block;
+        width: 10px;
+        height: 2px;
+        background: #000;
+        transition: 0.3s ease-in-out;
+      }
+    }
+
+    .Filter {
+      display: flex;
+      align-items: baseline;
+
+      select {
+        height: 3rem;
+        background-color: #fefefe;
+        padding-left: 12px;
+        background: transparent
+          url('data:image/svg+xml,%3Csvg777779%22 xmlns=%22http://www.w3.org/2000/svg%22 width=%2235%22 height=%2235%22 viewBox=%220 0 32 16%22%3E%3Cpath d=%22M7 10l5 5 5-5z%22/%3E%3Cpath d=%22M0 0h24v24H0z%22 fill=%22none%22/%3E%3C/svg%3E')
+          100% 0% no-repeat;
+        order: 0;
+        box-shadow: none;
+        color: #8b8b87;
+        font-size: 16px;
+        font-size: 1rem;
+        font-weight: 500;
+        margin: 0;
+        padding-right: 33px;
+        position: relative;
+        border: 2px solid #1d1d1b;
+        border-radius: 16px;
+        width: 309px;
+        // height: 48px;
+        cursor: pointer;
+
+        margin-left: 1rem;
+      }
+    }
+  }
+}
+.cms-react-boilerplate__container.accessories {
+  background-color: #f7f7f7;
+}
+
+.shown-loader {
+  display: flex !important;
+}
+
+.hidden-button-text {
+  display: none;
+}
+
+.add-to-cart-loader {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  .product-loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #2b2b2b;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    animation: spin 2s linear infinite;
+    position: absolute;
+    // z-index: 5;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+>>>>>>> Stashed changes
 }
 
 .spinning-logo__container {
@@ -184,6 +316,7 @@
             letter-spacing: 0px;
             color: #3f3e38;
             font-weight: 500;
+            margin-left: 0;
           }
           .imagebox {
             background-color: transparent;
@@ -334,6 +467,7 @@
   }
 }
 
+<<<<<<< Updated upstream
 .item {
   background: #fff;
   position: relative;
@@ -342,6 +476,20 @@
   border-radius: 15px;
   flex: 0 0 45%;
   max-width: 45%;
+=======
+  .item.ikhokha-register {
+    width: 100%;
+    border-radius: 15px;
+    flex: 0 0 100%;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 33%);
+    min-height: 40rem;
+    background-image: linear-gradient(#e8e8e7, #f7f7f7);
+    align-items: center;
+    grid-gap: 10px;
+    margin-bottom: 2rem;
+>>>>>>> Stashed changes
 
   .product-added {
     position: absolute;
@@ -431,6 +579,391 @@
         display: flex;
         align-items: center;
 
+<<<<<<< Updated upstream
+=======
+        h3 {
+          font-family: 'Roboto', sans-serif;
+          font-size: 20px;
+          color: #8b8b87;
+          text-align: left;
+          margin-left: 1rem;
+        }
+        .pricebox {
+          display: flex;
+          align-items: center;
+          margin-top: 1rem;
+          margin-left: 1rem;
+          .price {
+            font-family: 'Roboto', sans-serif;
+            font-size: 24px;
+            letter-spacing: 0.67px;
+            color: #1d1d1b;
+          }
+          .price,
+          .compareAtPriceV2 {
+            font-family: 'Roboto', sans-serif;
+            text-align: left;
+          }
+          .compareAtPriceV2 {
+            font-size: 18px;
+            margin-left: 10px;
+            color: #939393;
+            font-weight: normal;
+            text-decoration: line-through;
+          }
+        }
+        .des {
+          text-align: left;
+          margin-top: 1rem;
+          margin-left: 1rem;
+        }
+      }
+
+      .accepted-payments-heading {
+        text-align: left;
+        margin: 1rem auto;
+        padding: 0rem 1rem;
+        p {
+          font-family: 'Roboto', sans-serif;
+          font-size: 16px;
+          letter-spacing: 0px;
+          color: #3f3e38;
+          font-weight: 500;
+        }
+      }
+
+      .icons {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0rem 1rem;
+        .icon {
+          display: flex;
+          box-shadow: 0px 1px 8px #e8e8e7;
+          border-radius: 20px;
+          margin: 0.1rem 0.5rem;
+          align-items: center;
+          padding: 0.4rem 0.6rem !important;
+          padding: 0%;
+          background-color: #fff;
+          margin-bottom: 0.5rem;
+
+          p {
+            font-size: 14px;
+            color: #3f3e38;
+            font-weight: 500;
+            text-align: left;
+          }
+          .imagebox {
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+            img {
+              width: 100%;
+            }
+          }
+        }
+      }
+
+      .accepted-payments {
+        .icon {
+          display: flex;
+          box-shadow: 0px 0px 0px #e8e8e7;
+          border-radius: 20px;
+          margin: 0.2rem;
+          align-items: center;
+          padding: 0.3rem 0.6rem !important;
+          border: 1px solid #d1d1d1;
+          border-radius: 20px;
+          .imagebox {
+            img {
+              width: 100%;
+            }
+          }
+        }
+      }
+
+      .Value_added_services {
+        margin: 1rem 0 0 0.2rem;
+        .services {
+          display: flex;
+          justify-content: space-around;
+          align-content: center;
+          position: relative;
+          p {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            color: #1d1d1b;
+            width: 100%;
+          }
+
+          img {
+            width: 90%;
+            cursor: pointer;
+            margin-left: 0.5rem;
+          }
+          .tooltips {
+            padding: 0;
+            margin: 0;
+            position: relative;
+            margin-top: -10px;
+
+            .tooltipstext {
+              box-shadow: 0px 3px 15px #00000029;
+              opacity: 1;
+              position: absolute !important;
+              z-index: 1;
+              margin-left: 1.5rem;
+              margin-top: -1.8rem;
+              text-align: left;
+              background: #353936;
+              color: #fff;
+
+              font-size: 12px;
+              line-height: 1.2;
+              width: 13.5rem;
+              border-radius: 8px;
+              padding: 5px;
+              visibility: hidden;
+
+              &:after {
+                content: '';
+                position: absolute;
+                display: block;
+                width: 0;
+                z-index: 1;
+                border-style: solid;
+                border-color: transparent #353936;
+                border-width: 6px 15px 6px 0;
+                top: 50%;
+                left: -12px;
+                margin-top: -20px;
+              }
+            }
+            .showTooltip {
+              visibility: visible;
+            }
+          }
+        }
+      }
+
+      .bottomContentbox {
+        margin: 1rem auto 0;
+        display: flex;
+        justify-content: space-evenly;
+
+        padding-bottom: 2rem;
+        .white-btn {
+          background-color: #fff;
+          color: #000;
+          border: 2px solid #000000;
+          &:hover {
+            color: #fff;
+            background-color: #000;
+          }
+        }
+        .added-to-cart {
+          color: #fff !important;
+          background-color: #1d1d1b !important;
+          border: 1px solid #1d1d1b !important;
+          opacity: 0.7 !important;
+        }
+        .yellow-btn {
+          background-color: #ffcd00;
+          color: #000;
+          &:hover {
+            color: #ffcd00;
+            background-color: #1d1d1b;
+          }
+        }
+
+        .btn-disable {
+          background-color: #b1b1b1;
+          color: #fff;
+          pointer-events: none;
+        }
+        span,
+        a {
+          width: 42%;
+          line-height: 1;
+          font-weight: 700;
+          font-family: Roboto Bold, sans-serif;
+          display: inline-block;
+          position: relative;
+          letter-spacing: 0.01em;
+          font-size: 15px;
+          min-height: 40px;
+          background: 0;
+          margin: initial !important;
+          font-size: 18px !important;
+          font-weight: 700 !important;
+          border-radius: 16px !important;
+          padding: 11px 10px !important;
+          background-color: #b1b1b1;
+          color: #fff;
+          border: 0;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          pointer-events: auto;
+          text-align: center;
+          justify-content: center;
+        }
+      }
+    }
+
+    .WhatsInTheBox {
+      width: 100%;
+      padding: 0 0 0 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      p {
+        text-align: left;
+        width: 79%;
+      }
+
+      h3 {
+        font-family: 'Roboto', sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 0.56px;
+        color: #1d1d1b;
+        text-align: left;
+        margin-left: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .cards {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 100%;
+        .card-item {
+          background-color: #fff;
+          padding: 0.5rem 0.25rem;
+          border-radius: 8px;
+          margin-top: 0.5rem;
+          margin-right: 1rem;
+          width: 100%;
+          flex: 0 0 3.5vw;
+          align-self: flex-start;
+
+          img {
+            width: 100%;
+            margin: 0 auto;
+          }
+        }
+      }
+    }
+  }
+}
+
+.item {
+  background: #fff;
+  position: relative;
+  margin: 0 5px;
+  width: 48%;
+  border-radius: 16px;
+  flex: 0 0 48%;
+  margin-bottom: 2rem;
+
+  .product-added {
+    position: absolute;
+    color: #000;
+    top: 9px;
+    width: 60%;
+    border-radius: 8px;
+    opacity: 1;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0.7rem;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    visibility: hidden;
+    // transform: translate(97%, 37%);
+    transition: transform 0.5s;
+
+    p {
+      font-family: 'Roboto', sans-serif;
+      text-align: left;
+      font-size: 14px;
+      font-weight: normal;
+      letter-spacing: 0px;
+      color: #1d1d1b;
+      opacity: 1;
+    }
+  }
+
+  .product-added-alert {
+    // transform: translate(0%, 37%);
+    background-color: #cceff1;
+    visibility: visible;
+    opacity: 1;
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 0.5s;
+  }
+
+  .fade-in {
+    opacity: 1;
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 0.5s;
+  }
+
+  @keyframes fadeInOpacity {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .imagebox {
+    background-color: #f3f3f3;
+    overflow: hidden;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    img {
+      width: 60%;
+    }
+  }
+
+  .specifications {
+    box-shadow: 0px 5px 20px #1d1d1b1a;
+    border-radius: 16px;
+    margin-top: -1rem;
+    // height: 45vh;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 10px rgb(29 29 27 / 44%);
+    }
+
+    .textbox {
+      padding: 1rem 2rem;
+      border-radius: 15px;
+      background-color: #fff;
+
+      h3 {
+        font-family: 'Roboto', sans-serif;
+        font-size: 30px;
+        color: #3f3e38;
+        font-weight: medium;
+        text-align: left;
+      }
+      .pricebox {
+        display: flex;
+        align-items: center;
+
+>>>>>>> Stashed changes
         .price {
           font-family: 'Roboto', sans-serif;
           font-size: 24px;

@@ -6,7 +6,11 @@
   "host_template_types": ["PAGE"],
   "icon": "react",
   "js_assets": [],
+<<<<<<< Updated upstream
   "label": "CartCards",
+=======
+  "label": "CartCardsV2",
+>>>>>>> Stashed changes
   "other_assets": [],
   "smart_type": "NOT_SMART",
   "tags": [],

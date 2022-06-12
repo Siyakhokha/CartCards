@@ -11,3 +11,84 @@
       monospace;
   }
 }
+<<<<<<< Updated upstream
+=======
+
+.container {
+  display: flex;
+  position: relative;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+  width: 1170px;
+}
+
+// @media screen and (max-width: 767px) {
+//   .container {
+//     width: 100%;
+//     padding-right: 0.5rem;
+//     padding-left: 0.5rem;
+//     margin-right: auto;
+//     margin-left: auto;
+//   }
+// }
+
+.container,
+.container-fluid,
+.container-xxl,
+.container-xl,
+.container-lg,
+.container-md,
+.container-sm {
+  /* --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0; */
+  width: 100%;
+  /* padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5); */
+  margin-right: auto;
+  margin-left: auto;
+  overflow: hidden;
+}
+
+@media (min-width: 576px) {
+  .container-sm,
+  .container {
+    max-width: 540px;
+  }
+}
+@media (min-width: 768px) {
+  .container-md,
+  .container-sm,
+  .container {
+    max-width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container {
+    max-width: 1170px;
+  }
+}
+// @media (min-width: 1200px) {
+//   .container-xl,
+//   .container-lg,
+//   .container-md,
+//   .container-sm,
+//   .container {
+//     max-width: 1140px;
+//   }
+// }
+// @media (min-width: 1400px) {
+//   .container-xxl,
+//   .container-xl,
+//   .container-lg,
+//   .container-md,
+//   .container-sm,
+//   .container {
+//     max-width: 1320px;
+//   }
+// }
+>>>>>>> Stashed changes

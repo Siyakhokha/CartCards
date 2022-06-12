@@ -132,9 +132,9 @@
 
       {
         "allow_new_line": false,
-        "default": "hello world",
+        "default": "product description",
         "display_width": null,
-        "label": "heading",
+        "label": "Product Description",
         "locked": false,
         "name": "heading",
         "required": false,
