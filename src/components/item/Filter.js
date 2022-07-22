@@ -9,7 +9,7 @@ const Filter = ({ id, ProductData, NewproductData }) => {
 
     if (string2.toLowerCase() === string1.toLowerCase()) {
       let items = document?.querySelectorAll(
-        '.spinning-logo__container .item.accessories',
+        '.spinning-logo__container .item.accessories-old',
       );
 
       items?.forEach(i => {
@@ -22,7 +22,7 @@ const Filter = ({ id, ProductData, NewproductData }) => {
           .includes(productTitleCleaner(string2).toLocaleLowerCase());
       });
       let items = document?.querySelectorAll(
-        '.spinning-logo__container .item.accessories',
+        '.spinning-logo__container .item.accessories-old',
       );
 
       items?.forEach(i => {
@@ -46,7 +46,7 @@ const Filter = ({ id, ProductData, NewproductData }) => {
 
   return (
     <>
-      {id == 'accessories' && ProductName && ProductName.length > 0 && (
+      {id == 'accessories-old' && ProductName && ProductName.length > 0 && (
         <div className="Filter">
           <p>Filter by</p>
           <select

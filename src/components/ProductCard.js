@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { getCart } from '../services/cart-service';
-import { createCartData } from '../utils/createCartData';
 import { getCollectionHandle } from '../utils/getCollectionHandle';
 import { getPrice } from '../utils/getPrice';
 import Loading from '../utils/Loading/Loading';
@@ -34,9 +32,8 @@ const ProductCard = ({ moduleData }) => {
   const [load, setload] = useState(false);
   const [OnError, setOnError] = useState(false);
 
-
   useEffect(() => {
-    window?.addEventListener("cart-items", updateCartItems);
+    window?.addEventListener('cart-items', updateCartItems);
 
     getCollectionHandle(
       setProductData,
@@ -46,10 +43,10 @@ const ProductCard = ({ moduleData }) => {
       setOnError,
     );
   }, []);
-  
-  const updateCartItems = (event) => {
-    setCartData(event.detail)
-  }
+
+  const updateCartItems = event => {
+    setCartData(event.detail);
+  };
 
   return (
     <>
@@ -145,6 +142,7 @@ const ProductCard = ({ moduleData }) => {
                         variantID={
                           productItem?.node?.variants?.edges[0]?.node?.id
                         }
+                        productCode={productItem?.node?.id}
                         cart={cart}
                         cartItems={CartData?.items}
                         setCart={setCart}
@@ -163,7 +161,7 @@ const ProductCard = ({ moduleData }) => {
                 );
               })}
           </div>
-          {moduleData?.collection_id != 'card-machines' && (
+          {moduleData?.collection_id != 'card-machines-old' && (
             <div className="container bottom">
               <div className="Heading">
                 <h1>&nbsp;</h1>
